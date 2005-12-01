@@ -1,7 +1,7 @@
 Summary: squashfs utilities
 Name: squashfs-tools
 Version: 2.2r2
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Base
 URL: http://squashfs.sf.net
