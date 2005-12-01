@@ -1,0 +1,10 @@
+--- squashfs2.2-r2/squashfs-tools/Makefile.cflags	2005-12-01 14:53:27.000000000 -0500
++++ squashfs2.2-r2/squashfs-tools/Makefile	2005-12-01 14:56:24.000000000 -0500
+@@ -1,6 +1,6 @@
+ INCLUDEDIR = .
+ 
+-CFLAGS := -I$(INCLUDEDIR) -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -g
++CFLAGS := $(RPM_OPT_FLAGS) -I$(INCLUDEDIR) -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -g
+ 
+ mksquashfs: mksquashfs.o read_fs.o sort.o
+ 	$(CC) mksquashfs.o read_fs.o sort.o -lz -o $@
