@@ -1,7 +1,7 @@
 Summary: squashfs utilities
 Name: squashfs-tools
 Version: 2.2r2
-Release: 2.2
+Release: 2.2.1
 License: GPL
 Group: System Environment/Base
 URL: http://squashfs.sf.net
@@ -36,6 +36,9 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/mksquashfs
 
 %changelog
+* Fri Feb 10 2006 Jesse Keating <jkeating@redhat.com> - 2.2r2-2.2.1
+- bump again for double-long bug on ppc(64)
+
 * Tue Feb 07 2006 Jesse Keating <jkeating@redhat.com> - 2.2r2-2.2
 - rebuilt for new gcc4.1 snapshot and glibc changes
 
