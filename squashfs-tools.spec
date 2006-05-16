@@ -8,6 +8,7 @@ URL: http://squashfs.sf.net
 Source0: squashfs2.2-r2.tar.gz
 Patch0: squashfs-cflags.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: zlib-devel
 
 %description
 Squashfs is a highly compressed read-only filesystem for Linux.  This package
@@ -36,6 +37,9 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/mksquashfs
 
 %changelog
+* Tue May 16 2006 Jeremy Katz <katzj@redhat.com> 
+- add BR on zlib-devel (Andreas Thienemann, #191880)
+
 * Fri Feb 10 2006 Jesse Keating <jkeating@redhat.com> - 2.2r2-2.2.1
 - bump again for double-long bug on ppc(64)
 
