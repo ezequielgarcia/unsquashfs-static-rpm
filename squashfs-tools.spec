@@ -1,11 +1,11 @@
 Summary: squashfs utilities
 Name: squashfs-tools
-Version: 2.2r2
-Release: 2.2.1
+Version: 3.0
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://squashfs.sf.net
-Source0: squashfs2.2-r2.tar.gz
+Source0: squashfs3.0.tar.gz
 Patch0: squashfs-cflags.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
@@ -15,8 +15,8 @@ Squashfs is a highly compressed read-only filesystem for Linux.  This package
 contains the utilities for manipulating squashfs filesystems.
 
 %prep
-%setup -q -n squashfs2.2-r2
-%patch0 -p1
+%setup -q -n squashfs3.0
+%patch0 -p1 -b .cflags
 
 %build
 pushd squashfs-tools
@@ -24,8 +24,9 @@ make RPM_OPT_FLAGS="%{optflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/sbin
+mkdir -p $RPM_BUILD_ROOT/sbin $RPM_BUILD_ROOT/usr/sbin
 install -m 755 squashfs-tools/mksquashfs $RPM_BUILD_ROOT/sbin/mksquashfs
+install -m 755 squashfs-tools/unsquashfs $RPM_BUILD_ROOT/usr/sbin/unsquashfs
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -35,8 +36,13 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc README PERFORMANCE.README COPYING ACKNOWLEDGEMENTS CHANGES
 /sbin/mksquashfs
+/usr/sbin/unsquashfs
 
 %changelog
+* Fri Jun 23 2006 Jeremy Katz <katzj@redhat.com> - 3.0-1
+- update to 3.0
+- include unsquashfs
+
 * Tue May 16 2006 Jeremy Katz <katzj@redhat.com> 
 - add BR on zlib-devel (Andreas Thienemann, #191880)
 
