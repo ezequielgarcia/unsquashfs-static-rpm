@@ -8,7 +8,7 @@ URL: http://squashfs.sf.net
 Source0: squashfs3.0.tar.gz
 Patch0: squashfs-cflags.patch
 #http://sourceforge.net/mailarchive/forum.php?thread_id=11544292&forum_id=39601
-Patch1: squahsfs-fragmentsize.patch
+Patch1: squashfs-fragmentsize.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
 
