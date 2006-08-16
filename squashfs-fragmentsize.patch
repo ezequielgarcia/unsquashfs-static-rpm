@@ -1,0 +1,11 @@
+--- squashfs3.0/squashfs-tools/mksquashfs.c.fragment	2006-08-16 10:56:00.000000000 -0400
++++ squashfs3.0/squashfs-tools/mksquashfs.c	2006-08-16 10:56:46.000000000 -0400
+@@ -985,7 +985,7 @@
+ 	}
+ 
+ 	for(i = 0; i < meta_blocks; i++) {
+-		int avail_bytes = i == meta_blocks - 1 ? frag_bytes % SQUASHFS_METADATA_SIZE : SQUASHFS_METADATA_SIZE;
++		int avail_bytes = i == meta_blocks - 1 ? frag_bytes - i % SQUASHFS_METADATA_SIZE : SQUASHFS_METADATA_SIZE;
+ 		c_byte = mangle(cbuffer + block_offset, buffer + i * SQUASHFS_METADATA_SIZE , avail_bytes, SQUASHFS_METADATA_SIZE, noF, 0);
+ 		if(!swap)
+ 			memcpy(cbuffer, &c_byte, sizeof(unsigned short));

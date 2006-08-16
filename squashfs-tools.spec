@@ -1,12 +1,14 @@
 Summary: squashfs utilities
 Name: squashfs-tools
 Version: 3.0
-Release: 1.1
+Release: 2
 License: GPL
 Group: System Environment/Base
 URL: http://squashfs.sf.net
 Source0: squashfs3.0.tar.gz
 Patch0: squashfs-cflags.patch
+#http://sourceforge.net/mailarchive/forum.php?thread_id=11544292&forum_id=39601
+Patch1: squahsfs-fragmentsize.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
 
@@ -17,6 +19,7 @@ contains the utilities for manipulating squashfs filesystems.
 %prep
 %setup -q -n squashfs3.0
 %patch0 -p1 -b .cflags
+%patch1 -p1 -b .fragment
 
 %build
 pushd squashfs-tools
@@ -39,6 +42,9 @@ rm -rf $RPM_BUILD_ROOT
 /usr/sbin/unsquashfs
 
 %changelog
+* Wed Aug 16 2006 Jeremy Katz <katzj@redhat.com> - 3.0-2
+- add upstream patch for fragment size problem (#202663)
+
 * Wed Jul 12 2006 Jesse Keating <jkeating@redhat.com> - 3.0-1.1
 - rebuild
 
