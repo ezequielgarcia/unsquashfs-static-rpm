@@ -1,6 +1,6 @@
 diff -Naur old-mksquashfs/mksquashfs.c mksquashfs/mksquashfs.c
---- old-mksquashfs/mksquashfs.c	2006-08-16 23:48:05.000000000 +0100
-+++ mksquashfs/mksquashfs.c	2006-08-16 23:50:18.000000000 +0100
+--- a/squashfs-tools/mksquashfs.c	2006-08-16 23:48:05.000000000 +0100
++++ b/squashfs-tools/mksquashfs.c	2006-08-16 23:50:18.000000000 +0100
 @@ -985,7 +985,7 @@
  	}
  
