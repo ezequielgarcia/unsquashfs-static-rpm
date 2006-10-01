@@ -1,7 +1,7 @@
 Summary: squashfs utilities
 Name: squashfs-tools
 Version: 3.0
-Release: 3
+Release: 4
 License: GPL
 Group: System Environment/Base
 URL: http://squashfs.sf.net
@@ -42,6 +42,9 @@ rm -rf $RPM_BUILD_ROOT
 /usr/sbin/unsquashfs
 
 %changelog
+* Sun Oct 01 2006 Jesse Keating <jkeating@redhat.com> - 3.0-4
+- rebuilt for unwind info generation, broken in gcc-4.1.1-21
+
 * Mon Sep 18 2006 Jeremy Katz <katzj@redhat.com> - 3.0-3
 - updated fragment size patch (#204638)
 
