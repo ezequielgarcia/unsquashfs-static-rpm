@@ -1,14 +1,12 @@
 Summary: squashfs utilities
 Name: squashfs-tools
-Version: 3.0
-Release: 4
+Version: 3.2
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://squashfs.sf.net
-Source0: squashfs3.0.tar.gz
+Source0: squashfs3.2-r2.tar.gz
 Patch0: squashfs-cflags.patch
-#http://sourceforge.net/mailarchive/forum.php?thread_id=11544292&forum_id=39601
-Patch1: squashfs-fragmentsize.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
 
@@ -17,9 +15,8 @@ Squashfs is a highly compressed read-only filesystem for Linux.  This package
 contains the utilities for manipulating squashfs filesystems.
 
 %prep
-%setup -q -n squashfs3.0
+%setup -q -n squashfs3.2-r2
 %patch0 -p1 -b .cflags
-%patch1 -p1 -b .fragment
 
 %build
 pushd squashfs-tools
@@ -42,6 +39,9 @@ rm -rf $RPM_BUILD_ROOT
 /usr/sbin/unsquashfs
 
 %changelog
+* Tue Mar 20 2007 Jeremy Katz <katzj@redhat.com> - 3.2-1
+- update to 3.2r2
+
 * Sun Oct 01 2006 Jesse Keating <jkeating@redhat.com> - 3.0-4
 - rebuilt for unwind info generation, broken in gcc-4.1.1-21
 
