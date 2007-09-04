@@ -1,8 +1,8 @@
-Summary: squashfs utilities
+Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 3.2
 Release: 1
-License: GPL
+License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sf.net
 Source0: squashfs3.2-r2.tar.gz
@@ -26,7 +26,9 @@ make RPM_OPT_FLAGS="%{optflags}"
 rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT/sbin $RPM_BUILD_ROOT/usr/sbin
 install -m 755 squashfs-tools/mksquashfs $RPM_BUILD_ROOT/sbin/mksquashfs
-install -m 755 squashfs-tools/unsquashfs $RPM_BUILD_ROOT/usr/sbin/unsquashfs
+install -m 755 squashfs-tools/unsquashfs $RPM_BUILD_ROOT%{_sbindir}/unsquashfs
+
+chmod -x README PERFORMANCE.README COPYING ACKNOWLEDGEMENTS CHANGES
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -36,7 +38,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc README PERFORMANCE.README COPYING ACKNOWLEDGEMENTS CHANGES
 /sbin/mksquashfs
-/usr/sbin/unsquashfs
+%{_sbindir}/unsquashfs
 
 %changelog
 * Tue Mar 20 2007 Jeremy Katz <katzj@redhat.com> - 3.2-1
