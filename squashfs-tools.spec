@@ -1,7 +1,7 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 3.2
-Release: 1
+Release: 2
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sf.net
@@ -41,6 +41,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/unsquashfs
 
 %changelog
+* Wed Sep  5 2007 Jeremy Katz <katzj@redhat.com> - 3.2-2
+- fixes from package review (#226430)
+
 * Tue Mar 20 2007 Jeremy Katz <katzj@redhat.com> - 3.2-1
 - update to 3.2r2
 
