@@ -1,11 +1,11 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
-Version: 3.2
-Release: 2
+Version: 3.3
+Release: 1
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sf.net
-Source0: squashfs3.2-r2.tar.gz
+Source0: squashfs3.3.tgz
 Patch0: squashfs-cflags.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
@@ -15,7 +15,7 @@ Squashfs is a highly compressed read-only filesystem for Linux.  This package
 contains the utilities for manipulating squashfs filesystems.
 
 %prep
-%setup -q -n squashfs3.2-r2
+%setup -q -n squashfs3.3
 %patch0 -p1 -b .cflags
 
 %build
@@ -41,6 +41,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/unsquashfs
 
 %changelog
+* Fri Dec 14 2007 Jeremy Katz <katzj@redhat.com> - 3.3-1
+- Update to 3.3
+
 * Wed Sep  5 2007 Jeremy Katz <katzj@redhat.com> - 3.2-2
 - fixes from package review (#226430)
 
