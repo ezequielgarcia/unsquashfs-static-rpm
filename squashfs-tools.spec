@@ -1,7 +1,7 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 3.3
-Release: 1
+Release: 2
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sf.net
@@ -41,6 +41,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/unsquashfs
 
 %changelog
+* Tue Feb 19 2008 Fedora Release Engineering <rel-eng@fedoraproject.org> - 3.3-2
+- Autorebuild for GCC 4.3
+
 * Fri Dec 14 2007 Jeremy Katz <katzj@redhat.com> - 3.3-1
 - Update to 3.3
 
