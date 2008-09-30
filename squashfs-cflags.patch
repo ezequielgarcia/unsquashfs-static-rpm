@@ -1,6 +1,8 @@
---- squashfs3.0/squashfs-tools/Makefile.orig	2006-03-15 16:36:20.000000000 -0500
-+++ squashfs3.0/squashfs-tools/Makefile	2006-06-23 11:47:53.000000000 -0400
-@@ -1,6 +1,6 @@
+diff -up squashfs3.4/squashfs-tools/Makefile.cflags squashfs3.4/squashfs-tools/Makefile
+--- squashfs3.4/squashfs-tools/Makefile.cflags	2008-08-26 03:10:13.000000000 -0400
++++ squashfs3.4/squashfs-tools/Makefile	2008-09-30 15:08:22.000000000 -0400
+@@ -2,7 +2,7 @@ INSTALL_DIR = /usr/local/bin
+ 
  INCLUDEDIR = .
  
 -CFLAGS := -I$(INCLUDEDIR) -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -O2
