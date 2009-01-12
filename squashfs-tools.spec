@@ -1,11 +1,12 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
-Version: 3.4
-Release: 1
+Version: 4.0
+# cvs snapshot from cvs -d:pserver:anonymous@squashfs.cvs.sourceforge.net:/cvsroot/squashfs co squashfs on 2009-01-12
+Release: 0.20090112
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sf.net
-Source0: squashfs3.4.tar.gz
+Source0: squashfs-20090112.tar.bz2
 Patch0: squashfs-cflags.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
@@ -15,7 +16,7 @@ Squashfs is a highly compressed read-only filesystem for Linux.  This package
 contains the utilities for manipulating squashfs filesystems.
 
 %prep
-%setup -q -n squashfs3.4
+%setup -q -n squashfs
 %patch0 -p1 -b .cflags
 
 %build
@@ -26,9 +27,9 @@ make RPM_OPT_FLAGS="%{optflags}"
 rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT/sbin $RPM_BUILD_ROOT/usr/sbin
 install -m 755 squashfs-tools/mksquashfs $RPM_BUILD_ROOT/sbin/mksquashfs
-install -m 755 squashfs-tools/unsquashfs $RPM_BUILD_ROOT%{_sbindir}/unsquashfs
+#install -m 755 squashfs-tools/unsquashfs $RPM_BUILD_ROOT%{_sbindir}/unsquashfs
 
-chmod -x README PERFORMANCE.README COPYING ACKNOWLEDGEMENTS CHANGES
+chmod -x README
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -36,11 +37,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
-%doc README PERFORMANCE.README COPYING ACKNOWLEDGEMENTS CHANGES
+%doc README
 /sbin/mksquashfs
-%{_sbindir}/unsquashfs
+#%{_sbindir}/unsquashfs
 
 %changelog
+* Mon Jan 12 2009  <katzj@redhat.com> - 4.0-0.20090112
+- update to cvs snap that generates v4.0 images
+
 * Tue Sep 30 2008 Jeremy Katz <katzj@redhat.com> - 3.4-1
 - update to 3.4
 
