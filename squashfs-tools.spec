@@ -1,12 +1,12 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.0
-# cvs snapshot from cvs -d:pserver:anonymous@squashfs.cvs.sourceforge.net:/cvsroot/squashfs co squashfs on 2009-01-12
-Release: 0.20090112
+# cvs snapshot from cvs -d:pserver:anonymous@squashfs.cvs.sourceforge.net:/cvsroot/squashfs co squashfs on 2009-01-25
+Release: 0.20090125
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sf.net
-Source0: squashfs-20090112.tar.bz2
+Source0: squashfs-20090125.tar.bz2
 Patch0: squashfs-cflags.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
@@ -42,6 +42,10 @@ rm -rf $RPM_BUILD_ROOT
 #%{_sbindir}/unsquashfs
 
 %changelog
+* Mon Jan 26 2009 Kyle McMartin <kyle@redhat.com> - 4.0-0.20090125
+- update to cvs snap that should unbreak big endian machines creating
+  little endian fs.
+
 * Mon Jan 12 2009  <katzj@redhat.com> - 4.0-0.20090112
 - update to cvs snap that generates v4.0 images
 
