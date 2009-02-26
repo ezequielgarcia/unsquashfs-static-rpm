@@ -2,7 +2,7 @@ Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.0
 # cvs snapshot from cvs -d:pserver:anonymous@squashfs.cvs.sourceforge.net:/cvsroot/squashfs co squashfs on 2009-01-25
-Release: 0.20090125
+Release: 0.20090126
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sf.net
@@ -42,6 +42,9 @@ rm -rf $RPM_BUILD_ROOT
 #%{_sbindir}/unsquashfs
 
 %changelog
+* Wed Feb 25 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 4.0-0.20090126
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
+
 * Mon Jan 26 2009 Kyle McMartin <kyle@redhat.com> - 4.0-0.20090125
 - update to cvs snap that should unbreak big endian machines creating
   little endian fs.
