@@ -2,11 +2,11 @@ Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.0
 # cvs snapshot from cvs -d:pserver:anonymous@squashfs.cvs.sourceforge.net:/cvsroot/squashfs co squashfs on 2009-01-25
-Release: 0.20090316
+Release: 1
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sf.net
-Source0: squashfs-20090316.tar.bz2
+Source0: squashfs-4.0.tar.bz2
 Patch0: squashfs-cflags.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
@@ -27,21 +27,22 @@ make RPM_OPT_FLAGS="%{optflags}"
 rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT/sbin $RPM_BUILD_ROOT/usr/sbin
 install -m 755 squashfs-tools/mksquashfs $RPM_BUILD_ROOT/sbin/mksquashfs
-#install -m 755 squashfs-tools/unsquashfs $RPM_BUILD_ROOT%{_sbindir}/unsquashfs
-
-chmod -x README
+install -m 755 squashfs-tools/unsquashfs $RPM_BUILD_ROOT%{_sbindir}/unsquashfs
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-
 %files
 %defattr(-,root,root,-)
 %doc README
+%doc README-4.0
 /sbin/mksquashfs
-#%{_sbindir}/unsquashfs
+%{_sbindir}/unsquashfs
 
 %changelog
+* Sun Apr 05 2009 Kyle McMartin <kyle@redhat.com> - 4.0-1
+- Update to release 4.0
+
 * Tue Mar 16 2009 Kyle McMartin <kyle@redhat.com> - 4.0-0.20090316
 - update to cvs snap from 2009-03-16.
 
