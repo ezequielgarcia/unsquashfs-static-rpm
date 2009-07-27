@@ -2,7 +2,7 @@ Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.0
 # cvs snapshot from cvs -d:pserver:anonymous@squashfs.cvs.sourceforge.net:/cvsroot/squashfs co squashfs on 2009-01-25
-Release: 1
+Release: 2
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sf.net
@@ -40,6 +40,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/unsquashfs
 
 %changelog
+* Sun Jul 26 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 4.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
+
 * Sun Apr 05 2009 Kyle McMartin <kyle@redhat.com> - 4.0-1
 - Update to release 4.0
 
