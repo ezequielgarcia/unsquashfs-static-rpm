@@ -2,11 +2,11 @@ Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.0
 # cvs snapshot from cvs -d:pserver:anonymous@squashfs.cvs.sourceforge.net:/cvsroot/squashfs co squashfs on 2009-01-25
-Release: 2
+Release: 3%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sf.net
-Source0: squashfs-4.0.tar.bz2
+Source0: http://cdnetworks-us-2.dl.sourceforge.net/project/squashfs/squashfs/squashfs%{version}/squashfs%{version}.tar.gz
 Patch0: squashfs-cflags.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
@@ -16,7 +16,7 @@ Squashfs is a highly compressed read-only filesystem for Linux.  This package
 contains the utilities for manipulating squashfs filesystems.
 
 %prep
-%setup -q -n squashfs
+%setup -q -n squashfs%{version}
 %patch0 -p1 -b .cflags
 
 %build
@@ -40,6 +40,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/unsquashfs
 
 %changelog
+* Thu Feb 18 2010 Kyle McMartin <kyle@redhat.com> 4.0-3
+- Update to release tarball as opposed to cvs snapshot.
+- Add dist tag.
+
 * Sun Jul 26 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 4.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
 
