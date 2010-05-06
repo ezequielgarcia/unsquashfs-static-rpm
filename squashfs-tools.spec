@@ -2,12 +2,13 @@ Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.0
 # cvs snapshot from cvs -d:pserver:anonymous@squashfs.cvs.sourceforge.net:/cvsroot/squashfs co squashfs on 2009-01-25
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sf.net
 Source0: http://cdnetworks-us-2.dl.sourceforge.net/project/squashfs/squashfs/squashfs%{version}/squashfs%{version}.tar.gz
 Patch0: squashfs-cflags.patch
+Patch1: squashfs-fix-unsquashing-v3.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
 
@@ -18,6 +19,7 @@ contains the utilities for manipulating squashfs filesystems.
 %prep
 %setup -q -n squashfs%{version}
 %patch0 -p1 -b .cflags
+%patch1 -p1 -b .fix-unsquashing-v3
 
 %build
 pushd squashfs-tools
@@ -40,6 +42,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/unsquashfs
 
 %changelog
+* Wed May 5 2010 Kyle McMartin <kyle@redhat.com> 4.0-4
+- squashfs-fix-unsquashing-v3.patch: pull in fix from cvs. Thanks pkl!
+  (rhbz#523504)
+
 * Thu Feb 18 2010 Kyle McMartin <kyle@redhat.com> 4.0-3
 - Update to release tarball as opposed to cvs snapshot.
 - Add dist tag.
