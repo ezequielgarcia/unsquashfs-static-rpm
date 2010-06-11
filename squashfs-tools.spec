@@ -1,25 +1,27 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
-Version: 4.0
-# cvs snapshot from cvs -d:pserver:anonymous@squashfs.cvs.sourceforge.net:/cvsroot/squashfs co squashfs on 2009-01-25
-Release: 4%{?dist}
+Version: 4.1
+Release: 0.1.20100607%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sf.net
-Source0: http://cdnetworks-us-2.dl.sourceforge.net/project/squashfs/squashfs/squashfs%{version}/squashfs%{version}.tar.gz
+# cvs -d:pserver:anonymous@squashfs.cvs.sourceforge.net:/cvsroot/squashfs export -D 2010-06-07 squashfs
+Source0: squashfs-4.1.tar.bz2
 Patch0: squashfs-cflags.patch
-Patch1: squashfs-fix-unsquashing-v3.patch
+Patch1: squashfs-xz.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
+BuildRequires: xz-devel
+BuildRequires: libattr-devel
 
 %description
 Squashfs is a highly compressed read-only filesystem for Linux.  This package
 contains the utilities for manipulating squashfs filesystems.
 
 %prep
-%setup -q -n squashfs%{version}
-%patch0 -p1 -b .cflags
-%patch1 -p1 -b .fix-unsquashing-v3
+%setup -q -n squashfs
+%patch0 -p0
+%patch1 -p0
 
 %build
 pushd squashfs-tools
@@ -37,11 +39,15 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root,-)
 %doc README
-%doc README-4.0
 /sbin/mksquashfs
 %{_sbindir}/unsquashfs
 
 %changelog
+* Wed Jun 08 2010 Bruno Wolff III <bruno@wolff.to> - 4.1-0.1.20100607
+- Rebase to 4.1 prerelease with xz wrapper
+- Provides lzma compression as an option.
+- squashfs-fix-unsquashing-v3.patch is part of the 4.1 prerelease
+
 * Wed May 5 2010 Kyle McMartin <kyle@redhat.com> 4.0-4
 - squashfs-fix-unsquashing-v3.patch: pull in fix from cvs. Thanks pkl!
   (rhbz#523504)
