@@ -1,11 +1,11 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.1
-Release: 0.1.20100607%{?dist}
+Release: 0.2.20100727%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sf.net
-# cvs -d:pserver:anonymous@squashfs.cvs.sourceforge.net:/cvsroot/squashfs export -D 2010-06-07 squashfs
+# cvs -d:pserver:anonymous@squashfs.cvs.sourceforge.net:/cvsroot/squashfs export -D 2010-07-27 squashfs
 Source0: squashfs-4.1.tar.bz2
 Patch0: squashfs-cflags.patch
 Patch1: squashfs-xz.patch
@@ -43,6 +43,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/unsquashfs
 
 %changelog
+* Wed Jul 27 2010 Bruno Wolff III <bruno@wolff.to> - 4.1-0.2.20100727
+- Rebase to latest upstream devel state. Mostly xattr fixes and cleanup.
+
 * Wed Jun 08 2010 Bruno Wolff III <bruno@wolff.to> - 4.1-0.1.20100607
 - Rebase to 4.1 prerelease with xz wrapper
 - Provides lzma compression as an option.
