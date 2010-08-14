@@ -1,0 +1,20 @@
+--- squashfs-tools/mksquashfs.c.orig	2009-04-05 16:22:48.000000000 -0500
++++ squashfs-tools/mksquashfs.c	2010-08-14 14:07:28.000000000 -0500
+@@ -938,7 +938,7 @@
+ 			(unsigned short *) (inode_table + inode_bytes), 1);
+ 		inode_bytes += SQUASHFS_COMPRESSED_SIZE(c_byte) + BLOCK_OFFSET;
+ 		total_inode_bytes += SQUASHFS_METADATA_SIZE + BLOCK_OFFSET;
+-		memcpy(data_cache, data_cache + SQUASHFS_METADATA_SIZE,
++		memmove(data_cache, data_cache + SQUASHFS_METADATA_SIZE,
+ 			cache_bytes - SQUASHFS_METADATA_SIZE);
+ 		cache_bytes -= SQUASHFS_METADATA_SIZE;
+ 	}
+@@ -1579,7 +1579,7 @@
+ 		directory_bytes += SQUASHFS_COMPRESSED_SIZE(c_byte) +
+ 			BLOCK_OFFSET;
+ 		total_directory_bytes += SQUASHFS_METADATA_SIZE + BLOCK_OFFSET;
+-		memcpy(directory_data_cache, directory_data_cache +
++		memmove(directory_data_cache, directory_data_cache +
+ 			SQUASHFS_METADATA_SIZE, directory_cache_bytes -
+ 			SQUASHFS_METADATA_SIZE);
+ 		directory_cache_bytes -= SQUASHFS_METADATA_SIZE;
