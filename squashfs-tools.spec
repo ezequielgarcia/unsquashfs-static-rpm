@@ -1,11 +1,11 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.1
-Release: 0.3.20100803%{?dist}
+Release: 0.4.20100827%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sf.net
-# cvs -d:pserver:anonymous@squashfs.cvs.sourceforge.net:/cvsroot/squashfs export -D 2010-08-03 squashfs
+# cvs -d:pserver:anonymous@squashfs.cvs.sourceforge.net:/cvsroot/squashfs export -D 2010-08-27 squashfs
 Source0: squashfs-4.1.tar.bz2
 Patch0: squashfs-cflags.patch
 Patch1: squashfs-xz.patch
@@ -43,7 +43,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/unsquashfs
 
 %changelog
-* Tue Aug 03 2010 Bruno Wolff III <bruno@wolff.to> - 4.1-0.3.20100727
+* Sat Aug 28 2010 Bruno Wolff III <bruno@wolff.to> - 4.1-0.4.20100827
+- Rebase to latest upstream.
+- The main reason is to pick up a fix for large xattr similar to the large inode fix. This doesn't need to get backported as 4.0 doesn't have xattr support.
+- An option was added to build without xattr support.
+- Various source cleanups have been done as well.
+
+* Tue Aug 03 2010 Bruno Wolff III <bruno@wolff.to> - 4.1-0.3.20100803
 - Rebase to latest upstream
 - Prevent warning message for xattr for virtual directory
 - Fix issue with large inodes - BZ 619020
