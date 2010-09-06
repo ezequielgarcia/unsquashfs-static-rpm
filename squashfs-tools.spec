@@ -1,7 +1,7 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.1
-Release: 0.4.20100827%{?dist}
+Release: 0.5.20100827%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sf.net
@@ -9,6 +9,8 @@ URL: http://squashfs.sf.net
 Source0: squashfs-4.1.tar.bz2
 Patch0: squashfs-cflags.patch
 Patch1: squashfs-xz.patch
+# https://sourceforge.net/tracker/?func=detail&aid=3060400&group_id=63835&atid=505343
+Patch2: squashfs-swap-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
 BuildRequires: xz-devel
@@ -22,6 +24,7 @@ contains the utilities for manipulating squashfs filesystems.
 %setup -q -n squashfs
 %patch0 -p0
 %patch1 -p0
+%patch2 -p0
 
 %build
 pushd squashfs-tools
@@ -43,6 +46,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/unsquashfs
 
 %changelog
+* Mon Sep 6 2010 Dan Horák <dan[at]danny.cz> - 4.1-0.5.20100827
+- Add fixes for big-endian machines
+
 * Sat Aug 28 2010 Bruno Wolff III <bruno@wolff.to> - 4.1-0.4.20100827
 - Rebase to latest upstream.
 - The main reason is to pick up a fix for large xattr similar to the large inode fix. This doesn't need to get backported as 4.0 doesn't have xattr support.
