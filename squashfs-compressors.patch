@@ -1,0 +1,20 @@
+--- squashfs-tools/Makefile.orig	2010-09-21 00:20:10.000000000 -0500
++++ squashfs-tools/Makefile	2010-09-21 00:24:08.000000000 -0500
+@@ -30,7 +30,7 @@
+ # work) - download and unpack it, uncomment and set LZMA_DIR to unpacked source,
+ # and uncomment the LZMA_SUPPORT line below.
+ #
+-#XZ_SUPPORT = 1
++XZ_SUPPORT = 1
+ #LZMA_SUPPORT = 1
+ #LZMA_DIR = ../../../LZMA/lzma465
+ 
+@@ -43,7 +43,7 @@
+ # LZO_SUPPORT line below. If needed, uncomment and set LZO_DIR to the
+ # installation prefix.
+ #
+-#LZO_SUPPORT = 1
++LZO_SUPPORT = 1
+ #LZO_DIR = /usr/local
+ 
+ 
