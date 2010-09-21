@@ -5,12 +5,13 @@ Release: 1%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sf.net
-Source: http://sourceforge.net/projects/squashfs/files/squashfs/squashfs4.1/squashfs4.1.tar.gz/download
+Source0: http://downloads.sourceforge.net/squashfs/squashfs4.1.tar.gz
 Patch0: squashfs-cflags.patch
 Patch1: squashfs-compressors.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
 BuildRequires: xz-devel
+BuildRequires: lzo-devel
 BuildRequires: libattr-devel
 
 %description
