@@ -38,7 +38,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
-%doc README
+%doc ACKNOWLEDGEMENTS CHANGES COPYING DONATIONS INSTALL PERFORMANCE.README README README-4.1 pseudo-file.example
+
 /sbin/mksquashfs
 %{_sbindir}/unsquashfs
 
