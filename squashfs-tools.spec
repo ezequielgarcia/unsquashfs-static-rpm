@@ -1,16 +1,13 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.1
-Release: 0.5.20100827%{?dist}
+Release: 1%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sf.net
-# cvs -d:pserver:anonymous@squashfs.cvs.sourceforge.net:/cvsroot/squashfs export -D 2010-08-27 squashfs
-Source0: squashfs-4.1.tar.bz2
+Source: http://sourceforge.net/projects/squashfs/files/squashfs/squashfs4.1/squashfs4.1.tar.gz/download
 Patch0: squashfs-cflags.patch
-Patch1: squashfs-xz.patch
-# https://sourceforge.net/tracker/?func=detail&aid=3060400&group_id=63835&atid=505343
-Patch2: squashfs-swap-fixes.patch
+Patch1: squashfs-compressors.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
 BuildRequires: xz-devel
@@ -21,10 +18,9 @@ Squashfs is a highly compressed read-only filesystem for Linux.  This package
 contains the utilities for manipulating squashfs filesystems.
 
 %prep
-%setup -q -n squashfs
+%setup -q -n squashfs%{version}
 %patch0 -p0
 %patch1 -p0
-%patch2 -p0
 
 %build
 pushd squashfs-tools
@@ -46,6 +42,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/unsquashfs
 
 %changelog
+* Tue Sep 21 2010 Bruno Wolff III <bruno@wolff.to> - 4.1-1
+- Update to 4.1 final.
+- Byte swap patch is now upstream.
+- LZO compression type is now supported.
+
 * Mon Sep 6 2010 Dan Horák <dan[at]danny.cz> - 4.1-0.5.20100827
 - Add fixes for big-endian machines
 
