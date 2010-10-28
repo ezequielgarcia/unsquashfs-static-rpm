@@ -1,7 +1,7 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.1
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sf.net
@@ -44,6 +44,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/unsquashfs
 
 %changelog
+* Tue Sep 21 2010 Bruno Wolff III <bruno@wolff.to> - 4.1-3
+- Rebuild for xz soname bump
+
 * Wed Sep 29 2010 jkeating - 4.1-2
 - Rebuilt for gcc bug 634757
 
