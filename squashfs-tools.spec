@@ -44,7 +44,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/unsquashfs
 
 %changelog
-* Tue Sep 21 2010 Bruno Wolff III <bruno@wolff.to> - 4.1-3
+* Wed Oct 27 2010 Bruno Wolff III <bruno@wolff.to> - 4.1-3
 - Rebuild for xz soname bump
 
 * Wed Sep 29 2010 jkeating - 4.1-2
