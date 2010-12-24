@@ -1,11 +1,14 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
-Version: 4.1
-Release: 3%{?dist}
+Version: 4.2
+%global cvsdate 20101223
+Release: 0.1.%{cvsdate}%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sf.net
-Source0: http://downloads.sourceforge.net/squashfs/squashfs4.1.tar.gz
+# cvs -z3 -d:pserver:anonymous@squashfs.cvs.sourceforge.net:/cvsroot/squashfs export -D %{cvsdate} -d squashfs-%{version}-%{cvsdate} squashfs
+# tar cfj squashfs-%{version}-%{cvsdate}.bz2 squashfs-%{version}-%{cvsdate}
+Source0: squashfs-%{version}-%{cvsdate}.bz2
 Patch0: squashfs-cflags.patch
 Patch1: squashfs-compressors.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -19,7 +22,7 @@ Squashfs is a highly compressed read-only filesystem for Linux.  This package
 contains the utilities for manipulating squashfs filesystems.
 
 %prep
-%setup -q -n squashfs%{version}
+%setup -q -n squashfs-%{version}-%{cvsdate}
 %patch0 -p0
 %patch1 -p0
 
@@ -38,12 +41,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
-%doc ACKNOWLEDGEMENTS CHANGES COPYING DONATIONS INSTALL PERFORMANCE.README README README-4.1 pseudo-file.example
+%doc README
 
 /sbin/mksquashfs
 %{_sbindir}/unsquashfs
 
 %changelog
+* Fri Dec 24 2010 Bruno Wolff III <bruno@wolff.to> - 4.2-0.1.20101223
+* Switch to 4.2 development snapshot to get new XZ support
+* LZMA and XZ (LZMA2) support are now different
+
 * Wed Oct 27 2010 Bruno Wolff III <bruno@wolff.to> - 4.1-3
 - Rebuild for xz soname bump
 
