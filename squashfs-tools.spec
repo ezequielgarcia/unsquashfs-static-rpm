@@ -48,8 +48,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 * Fri Dec 24 2010 Bruno Wolff III <bruno@wolff.to> - 4.2-0.1.20101223
-* Switch to 4.2 development snapshot to get new XZ support
-* LZMA and XZ (LZMA2) support are now different
+- Switch to 4.2 development snapshot to get new XZ support
+- LZMA and XZ (LZMA2) support are now different
 
 * Wed Oct 27 2010 Bruno Wolff III <bruno@wolff.to> - 4.1-3
 - Rebuild for xz soname bump
