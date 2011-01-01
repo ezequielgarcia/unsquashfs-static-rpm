@@ -1,5 +1,5 @@
---- squashfs-tools/Makefile.orig	2010-12-24 11:29:18.000000000 -0600
-+++ squashfs-tools/Makefile	2010-12-24 11:30:05.000000000 -0600
+--- squashfs-tools/Makefile.orig	2011-01-01 11:01:33.000000000 -0600
++++ squashfs-tools/Makefile	2011-01-01 11:03:59.000000000 -0600
 @@ -32,7 +32,7 @@
  # work) - download and unpack it, uncomment and set LZMA_DIR to unpacked source,
  # and uncomment the LZMA_SUPPORT line below.
@@ -7,7 +7,7 @@
 -#LZMA_XZ_SUPPORT = 1
 +LZMA_XZ_SUPPORT = 1
  #LZMA_SUPPORT = 1
- #LZMA_DIR = ../../../LZMA/lzma465
+ #LZMA_DIR = ../../../../LZMA/lzma465
  
 @@ -45,7 +45,7 @@
  # To build using XZ Utils liblzma - install the library and uncomment
