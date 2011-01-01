@@ -1,12 +1,12 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.2
-%global cvsdate 20101223
-Release: 0.1.%{cvsdate}%{?dist}
+%global cvsdate 20101231
+Release: 0.2.%{cvsdate}%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sf.net
-# cvs -z3 -d:pserver:anonymous@squashfs.cvs.sourceforge.net:/cvsroot/squashfs export -D %{cvsdate} -d squashfs-%{version}-%{cvsdate} squashfs
+# cvs -z3 -d:pserver:anonymous@squashfs.cvs.sourceforge.net:/cvsroot/squashfs export -D "%{cvsdate} 2359 UTC" -d squashfs-%{version}-%{cvsdate} squashfs
 # tar cfj squashfs-%{version}-%{cvsdate}.bz2 squashfs-%{version}-%{cvsdate}
 Source0: squashfs-%{version}-%{cvsdate}.bz2
 Patch0: squashfs-cflags.patch
@@ -47,6 +47,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/unsquashfs
 
 %changelog
+* Sat Jan 01 2011 Bruno Wolff III <bruno@wolff.to> - 4.2-0.2.20101231
+- Pull latest upstream snapshot
+- Includes check for matching compression type when adding to an existing image
+- Sample cvs command now includes timezone and specifies when on the date to use for the snapshot
+
 * Fri Dec 24 2010 Bruno Wolff III <bruno@wolff.to> - 4.2-0.1.20101223
 - Switch to 4.2 development snapshot to get new XZ support
 - LZMA and XZ (LZMA2) support are now different
