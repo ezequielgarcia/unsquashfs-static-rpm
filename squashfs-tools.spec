@@ -2,7 +2,7 @@ Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.2
 %global cvsdate 20101231
-Release: 0.2.%{cvsdate}%{?dist}
+Release: 0.3.%{cvsdate}%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sf.net
@@ -11,6 +11,8 @@ URL: http://squashfs.sf.net
 Source0: squashfs-%{version}-%{cvsdate}.bz2
 Patch0: squashfs-cflags.patch
 Patch1: squashfs-compressors.patch
+# https://sourceforge.net/tracker/?func=detail&aid=3155564&group_id=63835&atid=505343
+Patch2: squashfs-bigendian.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
 BuildRequires: xz-devel
@@ -25,6 +27,7 @@ contains the utilities for manipulating squashfs filesystems.
 %setup -q -n squashfs-%{version}-%{cvsdate}
 %patch0 -p0
 %patch1 -p0
+%patch2 -p0
 
 %build
 pushd squashfs-tools
@@ -47,6 +50,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/unsquashfs
 
 %changelog
+* Tue Jan 11 2011 Dan Horák <dan[at]danny.cz> - 4.2-0.3.20101231
+- Add fixes for big-endian machines
+
 * Sat Jan 01 2011 Bruno Wolff III <bruno@wolff.to> - 4.2-0.2.20101231
 - Pull latest upstream snapshot
 - Includes check for matching compression type when adding to an existing image

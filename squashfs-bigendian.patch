@@ -1,0 +1,12 @@
+diff -up squashfs-tools/xz_wrapper.c.bigendian squashfs-tools/xz_wrapper.c
+--- squashfs-tools/xz_wrapper.c.bigendian	2011-01-11 14:16:43.000000000 +0100
++++ squashfs-tools/xz_wrapper.c	2011-01-11 14:16:48.000000000 +0100
+@@ -214,7 +214,7 @@ static int xz_extract_options(int block_
+ 		dictionary_size = block_size;
+ 		flags = 0;
+ 	} else {
+-		SQUASHFS_INSWAP_COMP_OPTS(&comp_opts);
++		SQUASHFS_INSWAP_COMP_OPTS(comp_opts);
+ 
+ 		dictionary_size = comp_opts->dictionary_size;
+ 		flags = comp_opts->flags;
