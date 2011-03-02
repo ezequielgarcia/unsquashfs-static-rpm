@@ -23,7 +23,7 @@ contains the utilities for manipulating squashfs filesystems.
 
 %build
 pushd squashfs-tools
-make CFLAGS="%{optflags}"
+CFLAGS="%{optflags}" make
 
 %install
 mkdir -p %{buildroot}/sbin %{buildroot}/usr/sbin
