@@ -1,18 +1,12 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.2
-%global cvsdate 20101231
-Release: 0.4.%{cvsdate}%{?dist}
+Release: 1%{?dist}
 License: GPLv2+
 Group: System Environment/Base
-URL: http://squashfs.sf.net
-# cvs -z3 -d:pserver:anonymous@squashfs.cvs.sourceforge.net:/cvsroot/squashfs export -D "%{cvsdate} 2359 UTC" -d squashfs-%{version}-%{cvsdate} squashfs
-# tar cfj squashfs-%{version}-%{cvsdate}.bz2 squashfs-%{version}-%{cvsdate}
-Source0: squashfs-%{version}-%{cvsdate}.bz2
-Patch0: squashfs-cflags.patch
+URL: http://squashfs.sourceforge.net/
+Source0: http://downloads.sourceforge.net/squashfs/squashfs%{version}.tar.gz
 Patch1: squashfs-compressors.patch
-# https://sourceforge.net/tracker/?func=detail&aid=3155564&group_id=63835&atid=505343
-Patch2: squashfs-bigendian.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
 BuildRequires: xz-devel
@@ -24,32 +18,38 @@ Squashfs is a highly compressed read-only filesystem for Linux.  This package
 contains the utilities for manipulating squashfs filesystems.
 
 %prep
-%setup -q -n squashfs-%{version}-%{cvsdate}
+%setup -q
 %patch0 -p0
 %patch1 -p0
-%patch2 -p0
 
 %build
 pushd squashfs-tools
-make RPM_OPT_FLAGS="%{optflags}"
+make CFLAGS="%{optflags}"
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/sbin $RPM_BUILD_ROOT/usr/sbin
-install -m 755 squashfs-tools/mksquashfs $RPM_BUILD_ROOT/sbin/mksquashfs
-install -m 755 squashfs-tools/unsquashfs $RPM_BUILD_ROOT%{_sbindir}/unsquashfs
+mkdir -p %{buildroot}/sbin %{buildroot}/usr/sbin
+install -m 755 squashfs-tools/mksquashfs %{buildroot}/sbin/mksquashfs
+install -m 755 squashfs-tools/unsquashfs %{buildroot}%{_sbindir}/unsquashfs
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%doc README
+%doc README ACKNOWLEDGEMENTS DONATIONS PERFORMANCE.README README-4.2 CHANGES pseudo-file.example COPYING
 
 /sbin/mksquashfs
 %{_sbindir}/unsquashfs
 
 %changelog
+* Tue Mar 01 2011 Bruno Wolff III <bruno@wolff.to> - 4.2-1
+- 4.2 is released.
+- Bugfix for bad data causing crash.
+- Include doc files added for release.
+- Big endian patch is now upstream.
+- Buildroot tag isn't needed any more.
+- We can now specify CFLAGS on the make call.
+
 * Wed Feb 09 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 4.2-0.4.20101231
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
 
