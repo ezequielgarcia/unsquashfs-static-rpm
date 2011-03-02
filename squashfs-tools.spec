@@ -6,7 +6,6 @@ License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sourceforge.net/
 Source0: http://downloads.sourceforge.net/squashfs/squashfs%{version}.tar.gz
-Patch1: squashfs-compressors.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
 BuildRequires: xz-devel
@@ -19,11 +18,10 @@ contains the utilities for manipulating squashfs filesystems.
 
 %prep
 %setup -q -n squashfs4.2
-%patch1 -p0
 
 %build
 pushd squashfs-tools
-CFLAGS="%{optflags}" make %{?_smp_mflags}
+CFLAGS="%{optflags}" XZ_SUPPORT=1 LZO_SUPPORT=1 LZMA_XZ_SUPPORT=1 make %{?_smp_mflags}
 
 %install
 mkdir -p %{buildroot}/sbin %{buildroot}/usr/sbin
@@ -48,6 +46,7 @@ rm -rf %{buildroot}
 - Big endian patch is now upstream.
 - Buildroot tag isn't needed any more.
 - We can now specify CFLAGS on the make call.
+- Compressor options are now passed with the make call.
 
 * Wed Feb 09 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 4.2-0.4.20101231
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
