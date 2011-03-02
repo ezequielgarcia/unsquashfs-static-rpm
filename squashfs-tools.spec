@@ -18,7 +18,7 @@ Squashfs is a highly compressed read-only filesystem for Linux.  This package
 contains the utilities for manipulating squashfs filesystems.
 
 %prep
-%setup -q
+%setup -q -n squashfs4.2
 %patch1 -p0
 
 %build
