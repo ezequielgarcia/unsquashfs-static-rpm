@@ -19,7 +19,6 @@ contains the utilities for manipulating squashfs filesystems.
 
 %prep
 %setup -q
-%patch0 -p0
 %patch1 -p0
 
 %build
