@@ -1,7 +1,7 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sourceforge.net/
@@ -39,6 +39,9 @@ rm -rf %{buildroot}
 %{_sbindir}/unsquashfs
 
 %changelog
+* Sat Jan 14 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 4.2-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+
 * Tue Mar 01 2011 Bruno Wolff III <bruno@wolff.to> - 4.2-1
 - 4.2 is released.
 - Bugfix for bad data causing crash.
