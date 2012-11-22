@@ -46,9 +46,6 @@ rm -rf %{buildroot}
 * Thu Nov 22 2012 Bruno Wolff III <bruno@wolff.to> - 4.2-4
 - Backported fix for bz 842458 (CVE-2012-4024)
 
-* Sat Jan 14 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 4.2-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
-
 * Tue Mar 01 2011 Bruno Wolff III <bruno@wolff.to> - 4.2-1
 - 4.2 is released.
 - Bugfix for bad data causing crash.
