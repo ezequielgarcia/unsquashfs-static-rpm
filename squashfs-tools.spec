@@ -1,7 +1,7 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.2
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sourceforge.net/
@@ -11,6 +11,9 @@ BuildRequires: zlib-devel
 BuildRequires: xz-devel
 BuildRequires: lzo-devel
 BuildRequires: libattr-devel
+# Upstream commit 19c38fba0be1ce949ab44310d7f49887576cc123 (minus version 
+# date change that doesn't apply cleanly)
+Patch0: path-issue.patch
 
 %description
 Squashfs is a highly compressed read-only filesystem for Linux.  This package
@@ -18,6 +21,7 @@ contains the utilities for manipulating squashfs filesystems.
 
 %prep
 %setup -q -n squashfs4.2
+%patch0 -p1 -b .pathname
 
 %build
 pushd squashfs-tools
@@ -39,6 +43,9 @@ rm -rf %{buildroot}
 %{_sbindir}/unsquashfs
 
 %changelog
+* Tue Nov 22 2012 Bruno Wolff III <bruno@wolff.to> - 4.2-4
+- Backported fix for bz 842458 (CVE-2012-4024)
+
 * Sat Jul 21 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 4.2-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
