@@ -46,9 +46,6 @@ rm -rf %{buildroot}
 * Thu Nov 22 2012 Bruno Wolff III <bruno@wolff.to> - 4.2-4
 - Backported fix for bz 842458 (CVE-2012-4024)
 
-* Sat Jul 21 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 4.2-3
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
-
 * Sat Jan 14 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 4.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 
