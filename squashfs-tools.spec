@@ -43,7 +43,7 @@ rm -rf %{buildroot}
 %{_sbindir}/unsquashfs
 
 %changelog
-* Tue Nov 22 2012 Bruno Wolff III <bruno@wolff.to> - 4.2-4
+* Thu Nov 22 2012 Bruno Wolff III <bruno@wolff.to> - 4.2-4
 - Backported fix for bz 842458 (CVE-2012-4024)
 
 * Sat Jul 21 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 4.2-3
@@ -101,10 +101,10 @@ rm -rf %{buildroot}
 - Prevent warning message for xattr for virtual directory
 - Fix issue with large inodes - BZ 619020
 
-* Wed Jul 27 2010 Bruno Wolff III <bruno@wolff.to> - 4.1-0.2.20100727
+* Tue Jul 27 2010 Bruno Wolff III <bruno@wolff.to> - 4.1-0.2.20100727
 - Rebase to latest upstream devel state. Mostly xattr fixes and cleanup.
 
-* Wed Jun 08 2010 Bruno Wolff III <bruno@wolff.to> - 4.1-0.1.20100607
+* Tue Jun 08 2010 Bruno Wolff III <bruno@wolff.to> - 4.1-0.1.20100607
 - Rebase to 4.1 prerelease with xz wrapper
 - Provides lzma compression as an option.
 - squashfs-fix-unsquashing-v3.patch is part of the 4.1 prerelease
@@ -123,7 +123,7 @@ rm -rf %{buildroot}
 * Sun Apr 05 2009 Kyle McMartin <kyle@redhat.com> - 4.0-1
 - Update to release 4.0
 
-* Tue Mar 16 2009 Kyle McMartin <kyle@redhat.com> - 4.0-0.20090316
+* Mon Mar 16 2009 Kyle McMartin <kyle@redhat.com> - 4.0-0.20090316
 - update to cvs snap from 2009-03-16.
 
 * Wed Feb 25 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 4.0-0.20090126
