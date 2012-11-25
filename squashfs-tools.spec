@@ -15,6 +15,7 @@ BuildRequires: libattr-devel
 # date change that doesn't apply cleanly)
 Patch0: path-issue.patch
 # Upstream commit 8515b3d420f502c5c0236b86e2d6d7e3b23c190e
+# Patch needed to be adjusted to fit with the 4.2 release
 Patch1: buffer-issue.patch
 
 %description
@@ -24,7 +25,7 @@ contains the utilities for manipulating squashfs filesystems.
 %prep
 %setup -q -n squashfs4.2
 %patch0 -p1 -b .pathname
-%patch1 -p1 -b .buffer
+%patch1 -p0 -b .buffer
 
 %build
 pushd squashfs-tools
