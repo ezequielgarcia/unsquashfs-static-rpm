@@ -35,7 +35,9 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%doc README ACKNOWLEDGEMENTS DONATIONS PERFORMANCE.README README-4.2 CHANGES pseudo-file.example COPYING
+# Until there is a real release only READ is available
+#%doc README ACKNOWLEDGEMENTS DONATIONS PERFORMANCE.README README-4.2 CHANGES pseudo-file.example COPYING
+%doc README
 
 /sbin/mksquashfs
 %{_sbindir}/unsquashfs
@@ -46,6 +48,7 @@ rm -rf %{buildroot}
 - This update includes a bit of internal code infrastructure changes
 - There are lots of fixes to better handle bad data
 - The final release is expected sometime in December
+- Until the release only the README doc file is available
 
 * Sun Nov 25 2012 Bruno Wolff III <bruno@wolff.to> - 4.2-5
 - Backported fix for bz 842460 (CVE-2012-4025)
