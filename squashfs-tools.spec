@@ -1,31 +1,25 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
-Version: 4.2
-Release: 5%{?dist}
+Version: 4.3
+Release: 0.1.git0be606be%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sourceforge.net/
+# For now I am using a prerelease version obtained by:
+# git archive --remote git://squashfs.git.sourceforge.net/gitroot/squashfs/squashfs --format=tar --prefix=squashfs4.3/ fadb345ddcf81e2b0e8cc802dbae41260be606be | gzip > squashfs4.3.tar.gz
 Source0: http://downloads.sourceforge.net/squashfs/squashfs%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
 BuildRequires: xz-devel
 BuildRequires: lzo-devel
 BuildRequires: libattr-devel
-# Upstream commit 19c38fba0be1ce949ab44310d7f49887576cc123 (minus version 
-# date change that doesn't apply cleanly)
-Patch0: path-issue.patch
-# Upstream commit 8515b3d420f502c5c0236b86e2d6d7e3b23c190e
-# Patch needed to be adjusted to fit with the 4.2 release
-Patch1: buffer-issue.patch
 
 %description
 Squashfs is a highly compressed read-only filesystem for Linux.  This package
 contains the utilities for manipulating squashfs filesystems.
 
 %prep
-%setup -q -n squashfs4.2
-%patch0 -p1 -b .pathname
-%patch1 -p0 -b .buffer
+%setup -q -n squashfs%{version}
 
 %build
 pushd squashfs-tools
@@ -47,6 +41,12 @@ rm -rf %{buildroot}
 %{_sbindir}/unsquashfs
 
 %changelog
+* Sat Dec 01 2012 Bruno Wolff III <bruno@wolff.to> - 4.3-0.1.git0be606be
+- Pre-release of 4.3 to get early testing
+- This update includes a bit of internal code infrastructure changes
+- There are lots of fixes to better handle bad data
+- The final release is expected sometime in December
+
 * Sun Nov 25 2012 Bruno Wolff III <bruno@wolff.to> - 4.2-5
 - Backported fix for bz 842460 (CVE-2012-4025)
 
