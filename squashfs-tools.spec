@@ -8,6 +8,9 @@ URL: http://squashfs.sourceforge.net/
 # For now I am using a prerelease version obtained by:
 # git archive --remote git://squashfs.git.sourceforge.net/gitroot/squashfs/squashfs --format=tar --prefix=squashfs4.3/ b0881af7a61a139b38e853dd25ae05f73ec9c8f7 | gzip > squashfs4.3.tar.gz
 Source0: http://downloads.sourceforge.net/squashfs/squashfs%{version}.tar.gz
+# manpages from http://ftp.debian.org/debian/pool/main/s/squashfs-tools/squashfs-tools_4.2+20121212-1.debian.tar.xz
+Source1: mksquashfs.1
+Source2: unsquashfs.1
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
 BuildRequires: xz-devel
@@ -26,9 +29,11 @@ pushd squashfs-tools
 CFLAGS="%{optflags}" XZ_SUPPORT=1 LZO_SUPPORT=1 LZMA_XZ_SUPPORT=1 make %{?_smp_mflags}
 
 %install
-mkdir -p %{buildroot}/sbin %{buildroot}/usr/sbin
+mkdir -p %{buildroot}/sbin %{buildroot}/usr/sbin %{buildroot}%{_mandir}/man1
 install -m 755 squashfs-tools/mksquashfs %{buildroot}/sbin/mksquashfs
 install -m 755 squashfs-tools/unsquashfs %{buildroot}%{_sbindir}/unsquashfs
+install -m 644 %{SOURCE1} %{buildroot}%{_mandir}/man1/mksquashfs.1
+install -m 644 %{SOURCE2} %{buildroot}%{_mandir}/man1/unsquashfs.1
 
 %clean
 rm -rf %{buildroot}
@@ -38,11 +43,15 @@ rm -rf %{buildroot}
 # Until there is a real release only READ is available
 #%doc README ACKNOWLEDGEMENTS DONATIONS PERFORMANCE.README README-4.2 CHANGES pseudo-file.example COPYING
 %doc README
+%{_mandir}/man1/*
 
 /sbin/mksquashfs
 %{_sbindir}/unsquashfs
 
 %changelog
+* Sun Mar 03 2013 Kyle McMartin <kmcmarti@redhat.com>
+- Add mksquashfs.1 and unsquashfs.1 manpages from Debian.
+
 * Mon Feb 18 2013 Bruno Wolff III <bruno@wolff.to> - 4.3-0.9.git3ec9c8f7
 - Latest pre 4.3 snapshot
 - Better error handling when space runs out
