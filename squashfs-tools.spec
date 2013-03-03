@@ -29,8 +29,8 @@ pushd squashfs-tools
 CFLAGS="%{optflags}" XZ_SUPPORT=1 LZO_SUPPORT=1 LZMA_XZ_SUPPORT=1 make %{?_smp_mflags}
 
 %install
-mkdir -p %{buildroot}/sbin %{buildroot}/usr/sbin %{buildroot}%{_mandir}/man1
-install -m 755 squashfs-tools/mksquashfs %{buildroot}/sbin/mksquashfs
+mkdir -p %{buildroot}%{_sbindir} %{buildroot}%{_mandir}/man1
+install -m 755 squashfs-tools/mksquashfs %{buildroot}%{_sbindir}/mksquashfs
 install -m 755 squashfs-tools/unsquashfs %{buildroot}%{_sbindir}/unsquashfs
 install -m 644 %{SOURCE1} %{buildroot}%{_mandir}/man1/mksquashfs.1
 install -m 644 %{SOURCE2} %{buildroot}%{_mandir}/man1/unsquashfs.1
@@ -45,10 +45,13 @@ rm -rf %{buildroot}
 %doc README
 %{_mandir}/man1/*
 
-/sbin/mksquashfs
+%{_sbindir}/mksquashfs
 %{_sbindir}/unsquashfs
 
 %changelog
+* Sun Mar 03 2013 Kyle McMartin <kmcmarti@redhat.com>
+- Move mksquashfs to /usr/sbin, as per UsrMove.
+
 * Sun Mar 03 2013 Kyle McMartin <kmcmarti@redhat.com>
 - Add mksquashfs.1 and unsquashfs.1 manpages from Debian.
 
