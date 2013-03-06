@@ -1,12 +1,12 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.3
-Release: 0.9.git3ec9c8f7%{?dist}
+Release: 0.10.git6a103792%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sourceforge.net/
 # For now I am using a prerelease version obtained by:
-# git archive --remote git://squashfs.git.sourceforge.net/gitroot/squashfs/squashfs --format=tar --prefix=squashfs4.3/ b0881af7a61a139b38e853dd25ae05f73ec9c8f7 | gzip > squashfs4.3.tar.gz
+# git archive --remote git://squashfs.git.sourceforge.net/gitroot/squashfs/squashfs --format=tar --prefix=squashfs4.3/ b86a89217a28ccecd77d2baf8de405366a103792 | gzip > squashfs4.3.tar.gz
 Source0: http://downloads.sourceforge.net/squashfs/squashfs%{version}.tar.gz
 # manpages from http://ftp.debian.org/debian/pool/main/s/squashfs-tools/squashfs-tools_4.2+20121212-1.debian.tar.xz
 Source1: mksquashfs.1
@@ -49,6 +49,10 @@ rm -rf %{buildroot}
 %{_sbindir}/unsquashfs
 
 %changelog
+* Wed Mar 06 2013 Bruno Wolff III <bruno@wolff.to> - 4.3-0.10.git6a103792
+- Latest pre 4.3 snapshot
+- Pick up some more error handling improvements
+
 * Sun Mar 03 2013 Kyle McMartin <kmcmarti@redhat.com>
 - Move mksquashfs to /usr/sbin, as per UsrMove.
 
