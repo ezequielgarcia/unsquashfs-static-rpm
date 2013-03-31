@@ -1,12 +1,12 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.3
-Release: 0.10.git6a103792%{?dist}
+Release: 0.11.git8228a3e8%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sourceforge.net/
 # For now I am using a prerelease version obtained by:
-# git archive --remote git://squashfs.git.sourceforge.net/gitroot/squashfs/squashfs --format=tar --prefix=squashfs4.3/ b86a89217a28ccecd77d2baf8de405366a103792 | gzip > squashfs4.3.tar.gz
+# git archive --remote git://squashfs.git.sourceforge.net/gitroot/squashfs/squashfs --format=tar --prefix=squashfs4.3/ 6140dfdc7d71d40c9f53b2f2a430477a8228a3e8 | gzip > squashfs4.3.tar.gz
 Source0: http://downloads.sourceforge.net/squashfs/squashfs%{version}.tar.gz
 # manpages from http://ftp.debian.org/debian/pool/main/s/squashfs-tools/squashfs-tools_4.2+20121212-1.debian.tar.xz
 Source1: mksquashfs.1
@@ -49,6 +49,10 @@ rm -rf %{buildroot}
 %{_sbindir}/unsquashfs
 
 %changelog
+* Sun Mar 31 2013 Bruno Wolff III <bruno@wolff.to> - 4.3-0.11.git8228a3e8
+- Latest pre 4.3 snapshot
+- SIGQUIT now displays the file being squashed
+
 * Wed Mar 06 2013 Bruno Wolff III <bruno@wolff.to> - 4.3-0.10.git6a103792
 - Latest pre 4.3 snapshot
 - Pick up some more error handling improvements
