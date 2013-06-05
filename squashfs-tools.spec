@@ -1,12 +1,14 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.3
-Release: 0.16.git84d8ae5c%{?dist}
+Release: 0.17.git5c6f0024%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sourceforge.net/
 # For now I am using a prerelease version obtained by:
-# git archive --remote git://squashfs.git.sourceforge.net/gitroot/squashfs/squashfs --format=tar --prefix=squashfs4.3/ 84d8ae5c6220e91a51209eeb8b6ed24dfb246ea7 | gzip > squashfs4.3.tar.gz
+# git clone git://git.kernel.org/pub/scm/fs/squashfs/squashfs-tools.git
+# cd squashfs-tools
+# git archive --format=tar --prefix=squashfs4.3/ 5c6f002483acc7b157ef3dcca38c0e272ebc3b80 | gzip > squashfs4.3.tar.gz
 Source0: http://downloads.sourceforge.net/squashfs/squashfs%{version}.tar.gz
 # manpages from http://ftp.debian.org/debian/pool/main/s/squashfs-tools/squashfs-tools_4.2+20121212-1.debian.tar.xz
 Source1: mksquashfs.1
@@ -49,6 +51,11 @@ rm -rf %{buildroot}
 %{_sbindir}/unsquashfs
 
 %changelog
+* Tue Jun 04 2013 Bruno Wolff III <bruno@wolff.to> - 4.3-0.17.git5c6f0024
+- Latest pre 4.3 snapshot
+- Includes fix for mksquashfs hangs
+- Switch to get pre-release updates from the stable branch at kernel.org
+
 * Thu May 23 2013 Bruno Wolff III <bruno@wolff.to> - 4.3-0.16.git84d8ae5c
 - Latest pre 4.3 snapshot
 - Fix for a rare race condition
