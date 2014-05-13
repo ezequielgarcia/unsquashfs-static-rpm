@@ -1,16 +1,13 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.3
-Release: 0.19.gitaae0aff4%{?dist}
+Release: 1%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sourceforge.net/
-# For now I am using a prerelease version obtained by:
-# git clone git://git.kernel.org/pub/scm/fs/squashfs/squashfs-tools.git
-# cd squashfs-tools
-# git archive --format=tar --prefix=squashfs4.3/ aae0aff4f0b3081bd1dfc058c867033a89c11aac | gzip > squashfs4.3.tar.gz
 Source0: http://downloads.sourceforge.net/squashfs/squashfs%{version}.tar.gz
 # manpages from http://ftp.debian.org/debian/pool/main/s/squashfs-tools/squashfs-tools_4.2+20121212-1.debian.tar.xz
+# The man pages have been modified for 4.3 for Fedora.
 Source1: mksquashfs.1
 Source2: unsquashfs.1
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -18,6 +15,7 @@ BuildRequires: zlib-devel
 BuildRequires: xz-devel
 BuildRequires: lzo-devel
 BuildRequires: libattr-devel
+BuildRequires: lz4-devel
 
 %description
 Squashfs is a highly compressed read-only filesystem for Linux.  This package
@@ -28,7 +26,7 @@ contains the utilities for manipulating squashfs filesystems.
 
 %build
 pushd squashfs-tools
-CFLAGS="%{optflags}" XZ_SUPPORT=1 LZO_SUPPORT=1 LZMA_XZ_SUPPORT=1 make %{?_smp_mflags}
+CFLAGS="%{optflags}" XZ_SUPPORT=1 LZO_SUPPORT=1 LZMA_XZ_SUPPORT=1 LZ4_SUPPORT=1 make %{?_smp_mflags}
 
 %install
 mkdir -p %{buildroot}%{_sbindir} %{buildroot}%{_mandir}/man1
@@ -42,8 +40,8 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-# Until there is a real release only READ is available
-#%doc README ACKNOWLEDGEMENTS DONATIONS PERFORMANCE.README README-4.2 CHANGES pseudo-file.example COPYING
+%doc README ACKNOWLEDGEMENTS DONATIONS PERFORMANCE.README README-4.3 CHANGES pseudo-file.example COPYING
+
 %doc README
 %{_mandir}/man1/*
 
@@ -51,6 +49,11 @@ rm -rf %{buildroot}
 %{_sbindir}/unsquashfs
 
 %changelog
+* Tue May 13 2014 Bruno Wolff III <bruno@wolff.to> 4.3-1
+- Update to real 4.3 release
+- Added support for lz4 since the stable snapshot
+- Added support for alternate zlib compression strategies
+
 * Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 4.3-0.19.gitaae0aff4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
