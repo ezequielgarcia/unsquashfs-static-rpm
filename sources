@@ -1,3 +1,8 @@
 d92ab59aabf5173f2a59089531e30dbf  squashfs4.3.tar.gz
+<<<<<<< HEAD
 235a2a9f839383a0a15dc7836c1c1693  mksquashfs.1
 ad06b65980fe81bf155e22a67d732607  unsquashfs.1
+=======
+7f834f7e4306737b5d7755a1ed61307d  mksquashfs.1
+68bf9bbf3ba00dc6e480a59b24905185  unsquashfs.1
+>>>>>>> f20
