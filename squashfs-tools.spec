@@ -1,7 +1,7 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.3
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sourceforge.net/
@@ -10,6 +10,12 @@ Source0: http://downloads.sourceforge.net/squashfs/squashfs%{version}.tar.gz
 # The man pages have been modified for 4.3 for Fedora.
 Source1: mksquashfs.1
 Source2: unsquashfs.1
+# From master branch (55f7ba830d40d438f0b0663a505e0c227fc68b6b).
+# 32 bit process can use too much memory when using PAE or 64 bit kernels
+Patch0:  PAE.patch
+# From master branch (604b607d8ac91eb8afc0b6e3d917d5c073096103).
+# Prevent overflows when using the -mem option.
+Patch1:  mem-overflow.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
 BuildRequires: xz-devel
@@ -23,6 +29,8 @@ contains the utilities for manipulating squashfs filesystems.
 
 %prep
 %setup -q -n squashfs%{version}
+%patch0
+%patch1
 
 %build
 pushd squashfs-tools
@@ -49,6 +57,10 @@ rm -rf %{buildroot}
 %{_sbindir}/unsquashfs
 
 %changelog
+* Fri Jun 13 2014 Bruno Wolff III <bruno@wolff.to> 4.3-6
+- Apply a couple of upstream patches.
+- Fixes issue issue with too much memory use under PAE kernels
+
 * Sun Jun 08 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 4.3-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
