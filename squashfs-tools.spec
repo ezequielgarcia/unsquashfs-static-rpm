@@ -61,9 +61,6 @@ rm -rf %{buildroot}
 - Apply a couple of upstream patches.
 - Fixes issue issue with too much memory use under PAE kernels
 
-* Sun Jun 08 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 4.3-5
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
-
 * Wed May 14 2014 Bruno Wolff III <bruno@wolff.to> 4.3-4
 - Even more man page fixes
 
