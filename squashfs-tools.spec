@@ -34,7 +34,7 @@ contains the utilities for manipulating squashfs filesystems.
 %setup -q -n squashfs%{version}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
+%patch2 -p0
 
 %build
 pushd squashfs-tools
