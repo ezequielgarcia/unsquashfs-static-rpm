@@ -1,7 +1,7 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.3
-Release: 6%{?dist}
+Release: 8%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sourceforge.net/
@@ -16,6 +16,9 @@ Patch0:  PAE.patch
 # From master branch (604b607d8ac91eb8afc0b6e3d917d5c073096103).
 # Prevent overflows when using the -mem option.
 Patch1:  mem-overflow.patch
+# From squashfs-devel@lists.sourceforge.net by Guan Xin <guanx.bac@gmail.com>
+# For https://bugzilla.redhat.com/show_bug.cgi?id=1141206
+PAtch2:  2gb.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
 BuildRequires: xz-devel
@@ -31,6 +34,7 @@ contains the utilities for manipulating squashfs filesystems.
 %setup -q -n squashfs%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p0
 
 %build
 pushd squashfs-tools
@@ -57,6 +61,9 @@ rm -rf %{buildroot}
 %{_sbindir}/unsquashfs
 
 %changelog
+* Sat Sep 13 2014 Bruno Wolff III <bruno@wolff.to> 4.3-8
+- Fix for files >= 2gb rhbz #1141206
+
 * Fri Jun 13 2014 Bruno Wolff III <bruno@wolff.to> 4.3-6
 - Apply a couple of upstream patches.
 - Fixes issue issue with too much memory use under PAE kernels
