@@ -1,7 +1,7 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.3
-Release: 9%{?dist}
+Release: 10%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sourceforge.net/
@@ -18,7 +18,11 @@ Patch0:  PAE.patch
 Patch1:  mem-overflow.patch
 # From squashfs-devel@lists.sourceforge.net by Guan Xin <guanx.bac@gmail.com>
 # For https://bugzilla.redhat.com/show_bug.cgi?id=1141206
-PAtch2:  2gb.patch
+Patch2:  2gb.patch
+# From https://github.com/gcanalesb/sasquatch/commit/6777e08cc38bc780d27c69c1d8c272867b74524f
+# Which is forked from Phillip's squashfs-tools, though it looks like 
+# the issue applies to us.
+Patch3:  cve-2015-4645.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
 BuildRequires: xz-devel
@@ -35,6 +39,7 @@ contains the utilities for manipulating squashfs filesystems.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p0
+%patch3 -p1
 
 %build
 pushd squashfs-tools
@@ -61,6 +66,9 @@ rm -rf %{buildroot}
 %{_sbindir}/unsquashfs
 
 %changelog
+* Tue Jun 23 2015 Bruno Wolff III <bruno@wolff.to> - 4.3-10
+- Fix for CVE 2015-4645/4646
+
 * Fri Jun 19 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 4.3-9
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
 
