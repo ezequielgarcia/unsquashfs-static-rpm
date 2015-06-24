@@ -1,7 +1,7 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.3
-Release: 10%{?dist}
+Release: 11%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://squashfs.sourceforge.net/
@@ -23,6 +23,8 @@ Patch2:  2gb.patch
 # Which is forked from Phillip's squashfs-tools, though it looks like 
 # the issue applies to us.
 Patch3:  cve-2015-4645.patch
+# Update formats to match changes in cve-2015-4645.patch
+Patch4:  squashfs-tools.spec
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
 BuildRequires: xz-devel
@@ -40,6 +42,7 @@ contains the utilities for manipulating squashfs filesystems.
 %patch1 -p1
 %patch2 -p0
 %patch3 -p1
+%patch4 -p0
 
 %build
 pushd squashfs-tools
