@@ -25,7 +25,6 @@ Patch2:  2gb.patch
 Patch3:  cve-2015-4645.patch
 # Update formats to match changes in cve-2015-4645.patch
 Patch4:  local-cve-fix.patch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
 BuildRequires: xz-devel
 BuildRequires: lzo-devel
