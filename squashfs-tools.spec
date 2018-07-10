@@ -55,7 +55,6 @@ install -m 644 %{SOURCE1} %{buildroot}%{_mandir}/man1/mksquashfs.1
 install -m 644 %{SOURCE2} %{buildroot}%{_mandir}/man1/unsquashfs.1
 
 %files
-%defattr(-,root,root,-)
 %doc README ACKNOWLEDGEMENTS DONATIONS PERFORMANCE.README README-4.3 CHANGES pseudo-file.example COPYING
 
 %doc README
