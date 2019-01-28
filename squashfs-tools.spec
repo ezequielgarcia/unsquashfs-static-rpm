@@ -3,7 +3,6 @@ Name: squashfs-tools
 Version: 4.3
 Release: 17%{?dist}
 License: GPLv2+
-Group: System Environment/Base
 URL: http://squashfs.sourceforge.net/
 Source0: http://downloads.sourceforge.net/squashfs/squashfs%{version}.tar.gz
 # manpages from http://ftp.debian.org/debian/pool/main/s/squashfs-tools/squashfs-tools_4.2+20121212-1.debian.tar.xz
