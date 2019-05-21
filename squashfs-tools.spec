@@ -1,7 +1,7 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.3
-Release: 18%{?dist}
+Release: 19%{?dist}
 License: GPLv2+
 URL: http://squashfs.sourceforge.net/
 Source0: http://downloads.sourceforge.net/squashfs/squashfs%{version}.tar.gz
@@ -24,6 +24,8 @@ Patch2:  2gb.patch
 Patch3:  cve-2015-4645.patch
 # Update formats to match changes in cve-2015-4645.patch
 Patch4:  local-cve-fix.patch
+# sys/sysmacros.h is no longer included by sys/types.h
+Patch5:  glibc.patch
 BuildRequires:  gcc
 BuildRequires: zlib-devel
 BuildRequires: xz-devel
@@ -42,6 +44,7 @@ contains the utilities for manipulating squashfs filesystems.
 %patch2 -p0
 %patch3 -p1
 %patch4 -p0
+%patch5 -p0
 
 %build
 pushd squashfs-tools
@@ -64,6 +67,9 @@ install -m 644 %{SOURCE2} %{buildroot}%{_mandir}/man1/unsquashfs.1
 %{_sbindir}/unsquashfs
 
 %changelog
+* Tue May 21 2019 Bruno Wolff III <bruno@wolff.to> - 4.3-19
+- Fix issue with glibc changes
+
 * Sun Feb 03 2019 Fedora Release Engineering <releng@fedoraproject.org> - 4.3-18
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
