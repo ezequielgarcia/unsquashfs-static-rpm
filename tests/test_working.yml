@@ -1,5 +1,7 @@
 ---
 - hosts: localhost
+  vars:
+  - artifacts: ./artifacts
   tags:
   - classic
   remote_user: root
