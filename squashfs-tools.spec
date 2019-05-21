@@ -1,7 +1,7 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.3
-Release: 19%{?dist}
+Release: 20%{?dist}
 License: GPLv2+
 URL: http://squashfs.sourceforge.net/
 Source0: http://downloads.sourceforge.net/squashfs/squashfs%{version}.tar.gz
@@ -47,6 +47,7 @@ contains the utilities for manipulating squashfs filesystems.
 %patch5 -p0
 
 %build
+%set_build_flags
 pushd squashfs-tools
 CFLAGS="%{optflags}" XZ_SUPPORT=1 LZO_SUPPORT=1 LZMA_XZ_SUPPORT=1 LZ4_SUPPORT=1 make %{?_smp_mflags}
 
@@ -67,6 +68,9 @@ install -m 644 %{SOURCE2} %{buildroot}%{_mandir}/man1/unsquashfs.1
 %{_sbindir}/unsquashfs
 
 %changelog
+* Tue May 21 2019 Bruno Wolff III <bruno@wolff.to> - 4.3-20
+- Fix issue with LDFLAGS not being set
+
 * Tue May 21 2019 Bruno Wolff III <bruno@wolff.to> - 4.3-19
 - Fix issue with glibc changes
 
