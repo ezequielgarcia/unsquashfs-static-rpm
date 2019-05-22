@@ -9,3 +9,4 @@
         run: ansible-playbook --tags=classic wrapper_working.yml
     required_packages:
     - rpmdevtools
+    - ansible
