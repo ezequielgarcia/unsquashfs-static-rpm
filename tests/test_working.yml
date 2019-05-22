@@ -6,7 +6,8 @@
   tasks:
   - name: Add extra required packages
     dnf:
-    - name: rpmdevtools
+      name: rpmdevtools
+      state: latest
   - name: Install the test files
     copy: src={{ item.file }} dest=/usr/local/bin/{{ item.dest }} mode=0755
     with_items:
