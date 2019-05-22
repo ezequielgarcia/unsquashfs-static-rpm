@@ -16,7 +16,7 @@
     block:
       - name: Execute the tests
         shell: |
-          cat /proc/filesystems; ls /lib/modules/$(uname -r)/kernel/fs; ls /sbin/mount.*; (/usr/local/bin/Squashfs-compression-test.sh &> /tmp/test.log); grep -iq failed /tmp/test.log && result=fail || result=pass
+          echo -n "squashfs" >> /etc/filesystems; (/usr/local/bin/Squashfs-compression-test.sh &> /tmp/test.log); grep -iq failed /tmp/test.log && result=fail || result=pass
           echo -e "results:\n- {result: $result, test: working}" > /tmp/results.yml
     always:
       - name: Pull out the logs
