@@ -111,7 +111,7 @@ for comp in ${ucomp[*]}; do
     for kern in ${mcomp[*]}; do
       if [ ${kern} == ${comp} ]; then
         echo "Testing mounted image using ${comp} compression."
-        mount -r -o loop ${testdir}/sq.img ${mp} || echo "Mount failed.";
+        mount -r -o loop -t squashfs ${testdir}/sq.img ${mp} || echo "Mount failed.";
         diff -r -q ${mp} ${datadir} || echo "Mounted test failed for ${comp} compression."
         umount ${mp}
         break
