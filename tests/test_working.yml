@@ -6,7 +6,7 @@
   tasks:
   - name: Add extra required packages
     dnf:
-      name: rpmdevtools kernel-modules
+      name: rpmdevtools, kernel-modules
       state: latest
   - name: Install the test files
     copy: src={{ item.file }} dest=/usr/local/bin/{{ item.dest }} mode=0755
