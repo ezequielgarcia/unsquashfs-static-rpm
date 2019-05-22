@@ -14,7 +14,7 @@
     block:
       - name: Execute the tests
         shell: |
-          /usr/local/bin/Squashfs-compression-test.sh &> /tmp/working.log; grep -iq failed /tmp/working.log && result=fail || result=pass
+          /usr/local/bin/Squashfs-compression-test.sh &> /tmp/test.log; grep -iq failed /tmp/test.log && result=fail || result=pass
           echo -e "results:\n- {result: $result, test: working}" > /tmp/results.yml
     always:
       - name: Pull out the logs
