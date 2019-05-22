@@ -23,5 +23,5 @@
           src: "{{ item }}"
           flat: yes
         with_items:
-          - /tmp/working.log
+          - /tmp/test.log
           - /tmp/results.yml
