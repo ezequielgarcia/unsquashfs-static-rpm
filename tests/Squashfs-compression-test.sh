@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # We need rpmdev-vercmp
-dnf install -y rpmdevtools
 rpm -q rpmdevtools > /dev/null 2>&1 || (echo 'rpmdev-vercmp from rpmdevtools is needed to run this script, aborting (failed).'; exit 1)
 
 # Define block sizes
