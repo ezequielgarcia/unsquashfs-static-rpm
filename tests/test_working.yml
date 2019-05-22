@@ -4,6 +4,9 @@
   - classic
   remote_user: root
   tasks:
+  - name: Add extra required packages
+    dnf:
+    - name: rpmdevtools
   - name: Install the test files
     copy: src={{ item.file }} dest=/usr/local/bin/{{ item.dest }} mode=0755
     with_items:
@@ -12,7 +15,7 @@
     block:
       - name: Execute the tests
         shell: |
-          dnf install -y --nogpgcheck rpmdevtools; cat /proc/filesystems; ls /lib/modules/$(uname -r)/kernel/fs; ls /sbin/mount.*; (/usr/local/bin/Squashfs-compression-test.sh &> /tmp/test.log); grep -iq failed /tmp/test.log && result=fail || result=pass
+          cat /proc/filesystems; ls /lib/modules/$(uname -r)/kernel/fs; ls /sbin/mount.*; (/usr/local/bin/Squashfs-compression-test.sh &> /tmp/test.log); grep -iq failed /tmp/test.log && result=fail || result=pass
           echo -e "results:\n- {result: $result, test: working}" > /tmp/results.yml
     always:
       - name: Pull out the logs
