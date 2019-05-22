@@ -17,7 +17,7 @@
     always:
       - name: Pull out the logs
         fetch:
-          dest: "{{ logs }}"
+          dest: "{{ remote_artifacts }}"
           src: "{{ item }}"
           flat: yes
         with_items:
