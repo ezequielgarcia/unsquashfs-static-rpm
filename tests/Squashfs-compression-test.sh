@@ -121,4 +121,3 @@ for comp in ${ucomp[*]}; do
   fi
   rm -f ${testdir}/sq ${testdir}/sq.img
 done
-echo failed
