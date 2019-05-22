@@ -12,7 +12,7 @@
     block:
       - name: Execute the tests
         shell: |
-          dnf install -y --nogpgcheck rpmdevtools; cat /proc/filesystems; ls ls /lib/modules/$(uname -r)/kernel/fs; ls /sbin/mount.*; (/usr/local/bin/Squashfs-compression-test.sh &> /tmp/test.log); grep -iq failed /tmp/test.log && result=fail || result=pass
+          dnf install -y --nogpgcheck rpmdevtools; cat /proc/filesystems; ls /lib/modules/$(uname -r)/kernel/fs; ls /sbin/mount.*; (/usr/local/bin/Squashfs-compression-test.sh &> /tmp/test.log); grep -iq failed /tmp/test.log && result=fail || result=pass
           echo -e "results:\n- {result: $result, test: working}" > /tmp/results.yml
     always:
       - name: Pull out the logs
