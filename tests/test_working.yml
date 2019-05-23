@@ -1,5 +1,7 @@
 ---
 - hosts: localhost
+  vars:
+  - artifacts: "{{ lookup('env', 'TEST_ARTIFACTS')|default('./artifacts', true) }}"
   tags:
   - classic
   remote_user: root
@@ -20,7 +22,7 @@
     always:
       - name: Pull out the logs
         fetch:
-          dest: "../../logs/"
+          dest: "{{ artifacts }}"
           src: "{{ item }}"
           flat: yes
         with_items:
