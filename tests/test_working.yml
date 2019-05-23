@@ -22,7 +22,7 @@
     always:
       - name: Pull out the logs
         fetch:
-          dest: "{{ artifacts }}"
+          dest: "{{ artifacts }}/"
           src: "{{ item }}"
           flat: yes
         with_items:
