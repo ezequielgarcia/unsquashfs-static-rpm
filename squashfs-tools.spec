@@ -26,12 +26,16 @@ Patch3:  cve-2015-4645.patch
 Patch4:  local-cve-fix.patch
 # sys/sysmacros.h is no longer included by sys/types.h
 Patch5:  glibc.patch
+# zstd compression support from https://github.com/plougher/squashfs-tools
+Patch6:  0001-squashfs-tools-Add-zstd-support.patch
+
 BuildRequires:  gcc
 BuildRequires: zlib-devel
 BuildRequires: xz-devel
 BuildRequires: lzo-devel
 BuildRequires: libattr-devel
 BuildRequires: lz4-devel
+BuildRequires: libzstd-devel
 
 %description
 Squashfs is a highly compressed read-only filesystem for Linux.  This package
@@ -45,11 +49,12 @@ contains the utilities for manipulating squashfs filesystems.
 %patch3 -p1
 %patch4 -p0
 %patch5 -p0
+%patch6 -p1
 
 %build
 %set_build_flags
 pushd squashfs-tools
-CFLAGS="%{optflags}" XZ_SUPPORT=1 LZO_SUPPORT=1 LZMA_XZ_SUPPORT=1 LZ4_SUPPORT=1 make %{?_smp_mflags}
+CFLAGS="%{optflags}" XZ_SUPPORT=1 LZO_SUPPORT=1 LZMA_XZ_SUPPORT=1 LZ4_SUPPORT=1 ZSTD_SUPPORT=1 make %{?_smp_mflags}
 
 %install
 mkdir -p %{buildroot}%{_sbindir} %{buildroot}%{_mandir}/man1
@@ -68,6 +73,9 @@ install -m 644 %{SOURCE2} %{buildroot}%{_mandir}/man1/unsquashfs.1
 %{_sbindir}/unsquashfs
 
 %changelog
+* Mon Jun 24 2019 Bruno Wolff III <bruno@wolff.to> - 4.3-21
+- Add zstd compression support (Sean Purcell via github.com/plougher/squashfs-tools)
+
 * Tue May 21 2019 Bruno Wolff III <bruno@wolff.to> - 4.3-20
 - Fix issue with LDFLAGS not being set
 
