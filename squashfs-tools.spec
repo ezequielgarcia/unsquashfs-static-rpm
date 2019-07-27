@@ -1,7 +1,7 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.3
-Release: 21%{?dist}
+Release: 22%{?dist}
 License: GPLv2+
 URL: http://squashfs.sourceforge.net/
 Source0: http://downloads.sourceforge.net/squashfs/squashfs%{version}.tar.gz
@@ -73,6 +73,9 @@ install -m 644 %{SOURCE2} %{buildroot}%{_mandir}/man1/unsquashfs.1
 %{_sbindir}/unsquashfs
 
 %changelog
+* Sat Jul 27 2019 Fedora Release Engineering <releng@fedoraproject.org> - 4.3-22
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
+
 * Mon Jun 24 2019 Bruno Wolff III <bruno@wolff.to> - 4.3-21
 - Add zstd compression support (Sean Purcell via github.com/plougher/squashfs-tools)
 
