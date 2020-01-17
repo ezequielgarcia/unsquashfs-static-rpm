@@ -1,7 +1,7 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.3
-Release: 22%{?dist}
+Release: 23%{?dist}
 License: GPLv2+
 URL: http://squashfs.sourceforge.net/
 Source0: http://downloads.sourceforge.net/squashfs/squashfs%{version}.tar.gz
@@ -28,6 +28,9 @@ Patch4:  local-cve-fix.patch
 Patch5:  glibc.patch
 # zstd compression support from https://github.com/plougher/squashfs-tools
 Patch6:  0001-squashfs-tools-Add-zstd-support.patch
+# create_dir_entry needs a qualifier to ensure a copy is emitted if it
+# is not inlined to every caller
+Patch7:  inline.patch
 
 BuildRequires:  gcc
 BuildRequires: zlib-devel
@@ -50,6 +53,7 @@ contains the utilities for manipulating squashfs filesystems.
 %patch4 -p0
 %patch5 -p0
 %patch6 -p1
+%patch7 -p1
 
 %build
 %set_build_flags
@@ -73,6 +77,10 @@ install -m 644 %{SOURCE2} %{buildroot}%{_mandir}/man1/unsquashfs.1
 %{_sbindir}/unsquashfs
 
 %changelog
+* Fri Jan 17 2020 Jeff Law <law@redhat.com> - 4.3-23
+- Fix undefined symbol when building with LTO due to incorrect
+  use of inline function
+
 * Sat Jul 27 2019 Fedora Release Engineering <releng@fedoraproject.org> - 4.3-22
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
