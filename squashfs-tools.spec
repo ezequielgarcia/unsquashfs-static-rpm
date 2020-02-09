@@ -1,7 +1,7 @@
 Summary: Utility for the creation of squashfs filesystems
 Name: squashfs-tools
 Version: 4.3
-Release: 24%{?dist}
+Release: 25%{?dist}
 License: GPLv2+
 URL: http://squashfs.sourceforge.net/
 Source0: http://downloads.sourceforge.net/squashfs/squashfs%{version}.tar.gz
@@ -31,6 +31,9 @@ Patch6:  0001-squashfs-tools-Add-zstd-support.patch
 # create_dir_entry needs a qualifier to ensure a copy is emitted if it
 # is not inlined to every caller
 Patch7:  inline.patch
+# gcc10 tighter checking caught a problem. It was fixed upstream
+# a couple of weeks ago.
+Patch8:  gcc10.patch
 
 BuildRequires:  gcc
 BuildRequires: zlib-devel
@@ -54,6 +57,7 @@ contains the utilities for manipulating squashfs filesystems.
 %patch5 -p0
 %patch6 -p1
 %patch7 -p1
+%patch8 -p0
 
 %build
 %set_build_flags
@@ -77,6 +81,9 @@ install -m 644 %{SOURCE2} %{buildroot}%{_mandir}/man1/unsquashfs.1
 %{_sbindir}/unsquashfs
 
 %changelog
+* Sat Feb 08 2020 Bruno Wolff III <bruno@wolff.to> - 4.3-25
+- Fix duplicate definition flagged by gcc10
+
 * Fri Jan 31 2020 Fedora Release Engineering <releng@fedoraproject.org> - 4.3-24
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
