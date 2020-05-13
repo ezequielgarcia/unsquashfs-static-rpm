@@ -7,7 +7,7 @@ Name: squashfs-tools
 Release: 1%{?dist}
 License: GPLv2+
 URL: %{forgeurl}
-# Use curl -LO %{forgesource} to get the source tar ball.
+# Use curl -LO %%{forgesource} to get the source tar ball.
 Source: %{forgesource}
 # manpages from http://ftp.debian.org/debian/pool/main/s/squashfs-tools/squashfs-tools_4.2+20121212-1.debian.tar.xz
 # The man pages have been modified for 4.3 for Fedora.
