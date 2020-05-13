@@ -42,7 +42,7 @@ install -m 644 %{SOURCE1} %{buildroot}%{_mandir}/man1/mksquashfs.1
 install -m 644 %{SOURCE2} %{buildroot}%{_mandir}/man1/unsquashfs.1
 
 %files
-%doc README ACKNOWLEDGEMENTS DONATIONS PERFORMANCE.README README-4.3 CHANGES pseudo-file.example COPYING
+%doc README ACKNOWLEDGEMENTS README-4.4 CHANGES COPYING USAGE
 
 %doc README
 %{_mandir}/man1/*
