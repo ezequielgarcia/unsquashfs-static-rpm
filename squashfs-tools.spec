@@ -51,6 +51,9 @@ install -m 644 %{SOURCE2} %{buildroot}%{_mandir}/man1/unsquashfs.1
 %{_sbindir}/unsquashfs
 
 %changelog
+* Tue May 12 2020 Bruno Wolff III <bruno@wolff.to> - 4.4-1.20200513gitc570c61
+- Go to 4.4 release + plus a few upstream post release patches
+
 * Sat Feb 08 2020 Bruno Wolff III <bruno@wolff.to> - 4.3-25
 - Fix duplicate definition flagged by gcc10
 
