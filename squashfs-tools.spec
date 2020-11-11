@@ -1,14 +1,11 @@
 Summary: Utility for the creation of squashfs filesystems
 %global forgeurl https://github.com/plougher/squashfs-tools
-%global commit c570c6188811088b12ffdd9665487a2960c997a0
 Version: 4.4
-%forgemeta
 Name: squashfs-tools
-Release: 2%{?dist}
+Release: 3.git1%{?dist}
 License: GPLv2+
-URL: %{forgeurl}
-# Use curl -LO %%{forgesource} to get the source tar ball.
-Source: %{forgesource}
+URL: %{forgeurl}/archive/4.4-git.1.tar.gz
+Source: 4.4-git.1.tar.gz
 # manpages from http://ftp.debian.org/debian/pool/main/s/squashfs-tools/squashfs-tools_4.2+20121212-1.debian.tar.xz
 # The man pages have been modified for 4.3 for Fedora.
 Source1: mksquashfs.1
@@ -27,7 +24,7 @@ Squashfs is a highly compressed read-only filesystem for Linux.  This package
 contains the utilities for manipulating squashfs filesystems.
 
 %prep
-%forgesetup
+%setup -n %{name}-4.4-git.1
 
 %build
 %set_build_flags
@@ -51,6 +48,9 @@ install -m 644 %{SOURCE2} %{buildroot}%{_mandir}/man1/unsquashfs.1
 %{_sbindir}/unsquashfs
 
 %changelog
+* Wed Nov 11 2020 <bruno@wolff.to> - 4.4-3.git1
+- New upstream release with a minor fix
+
 * Wed Jul 29 2020 Fedora Release Engineering <releng@fedoraproject.org> - 4.4-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
