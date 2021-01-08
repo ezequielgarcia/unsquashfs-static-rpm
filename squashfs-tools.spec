@@ -11,6 +11,7 @@ Source: 4.4-git.1.tar.gz
 Source1: mksquashfs.1
 Source2: unsquashfs.1
 
+BuildRequires: make
 BuildRequires:  gcc
 BuildRequires: zlib-devel
 BuildRequires: xz-devel
