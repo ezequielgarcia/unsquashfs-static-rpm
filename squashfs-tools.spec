@@ -2,7 +2,7 @@ Summary: Utility for the creation of squashfs filesystems
 %global forgeurl https://github.com/plougher/squashfs-tools
 Version: 4.4
 Name: squashfs-tools
-Release: 4.git1%{?dist}
+Release: 5.git1%{?dist}
 License: GPLv2+
 URL: %{forgeurl}/archive/4.4-git.1.tar.gz
 Source: 4.4-git.1.tar.gz
@@ -49,6 +49,9 @@ install -m 644 %{SOURCE2} %{buildroot}%{_mandir}/man1/unsquashfs.1
 %{_sbindir}/unsquashfs
 
 %changelog
+* Wed Jan 27 2021 Fedora Release Engineering <releng@fedoraproject.org> - 4.4-5.git1
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
+
 * Sat Nov 14 2020 Bruno Wolff III <bruno@wolff.to> - 4.4-4.git1
 - Gating tests failed and unable to rerun them
 
