@@ -1,13 +1,14 @@
 Summary: Utility for the creation of squashfs filesystems
 %global forgeurl https://github.com/plougher/squashfs-tools
-Version: 4.4
+Version: 4.5
 Name: squashfs-tools
-Release: 5.git1%{?dist}
+Release: 1%{?dist}
 License: GPLv2+
-URL: %{forgeurl}/archive/4.4-git.1.tar.gz
-Source: 4.4-git.1.tar.gz
+URL: %{forgeurl}/archive/4.5.tar.gz
+Source: 4.5.tar.gz
 # manpages from http://ftp.debian.org/debian/pool/main/s/squashfs-tools/squashfs-tools_4.2+20121212-1.debian.tar.xz
 # The man pages have been modified for 4.3 for Fedora.
+# Man pages still need a lot of changes for 4.5
 Source1: mksquashfs.1
 Source2: unsquashfs.1
 
@@ -25,7 +26,7 @@ Squashfs is a highly compressed read-only filesystem for Linux.  This package
 contains the utilities for manipulating squashfs filesystems.
 
 %prep
-%setup -n %{name}-4.4-git.1
+%setup -n %{name}-4.5
 
 %build
 %set_build_flags
@@ -38,17 +39,25 @@ install -m 755 squashfs-tools/mksquashfs %{buildroot}%{_sbindir}/mksquashfs
 install -m 755 squashfs-tools/unsquashfs %{buildroot}%{_sbindir}/unsquashfs
 install -m 644 %{SOURCE1} %{buildroot}%{_mandir}/man1/mksquashfs.1
 install -m 644 %{SOURCE2} %{buildroot}%{_mandir}/man1/unsquashfs.1
+ln -s mksquashfs %{buildroot}%{_sbindir}/sqfstar
+ln -s unsquashfs %{buildroot}%{_sbindir}/sqfscat
 
 %files
-%doc README ACKNOWLEDGEMENTS README-4.4 CHANGES COPYING USAGE
+%doc README ACKNOWLEDGEMENTS README-4.5 CHANGES COPYING USAGE
 
 %doc README
 %{_mandir}/man1/*
 
 %{_sbindir}/mksquashfs
 %{_sbindir}/unsquashfs
+%{_sbindir}/sqfstar
+%{_sbindir}/sqfscat
 
 %changelog
+* Fri Jul 23 2021 Bruno Wolff III <bruno@wolff.to> - 4.5-1
+- First crack at 4.5 release
+- Man pages still need significant work
+
 * Wed Jan 27 2021 Fedora Release Engineering <releng@fedoraproject.org> - 4.4-5.git1
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
