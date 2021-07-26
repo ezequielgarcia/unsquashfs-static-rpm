@@ -2,7 +2,7 @@ Summary: Utility for the creation of squashfs filesystems
 %global forgeurl https://github.com/plougher/squashfs-tools
 Version: 4.5
 Name: squashfs-tools
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv2+
 URL: %{forgeurl}/archive/4.5.tar.gz
 Source: 4.5.tar.gz
@@ -11,6 +11,10 @@ Source: 4.5.tar.gz
 # Man pages still need a lot of changes for 4.5
 Source1: mksquashfs.1
 Source2: unsquashfs.1
+# Mksquashfs: fix duplicate check when last file block is sparse
+# git diff 19b161c1cd3e31f7a396ea92dea4390ad43f27b9^ 19b161c1cd3e31f7a396ea92dea4390ad43f27b9 > fix-sparse.patch
+# https://bugzilla.gnome.org/show_bug.cgi?id=1985561
+Patch0: fix-sparse.patch
 
 BuildRequires: make
 BuildRequires:  gcc
@@ -27,6 +31,7 @@ contains the utilities for manipulating squashfs filesystems.
 
 %prep
 %setup -n %{name}-4.5
+%patch0 -p1
 
 %build
 %set_build_flags
@@ -54,6 +59,9 @@ ln -s unsquashfs %{buildroot}%{_sbindir}/sqfscat
 %{_sbindir}/sqfscat
 
 %changelog
+* Mon Jul 26 2021 Bruno Wolff III <bruno@wolff.to> - 4.5-2
+- Fix for sparse fragment bug 1985561
+
 * Fri Jul 23 2021 Bruno Wolff III <bruno@wolff.to> - 4.5-1
 - First crack at 4.5 release
 - Man pages still need significant work
