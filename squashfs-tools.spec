@@ -1,11 +1,14 @@
-Summary: Utility for the creation of squashfs filesystems
-%global forgeurl https://github.com/plougher/squashfs-tools
-Version: 4.5
 Name: squashfs-tools
-Release: 2%{?dist}
+Version: 4.5
+Summary: Utility for the creation of squashfs filesystems
+%global forgeurl https://github.com/plougher/%{name}
+%global date 20210913
+%global commit e0485802ec72996c20026da320650d8362f555bd
+%forgemeta -i
+URL:	 %{forgeurl}
+Source:  %{forgesource}
+Release: 3%{?dist}
 License: GPLv2+
-URL: %{forgeurl}/archive/4.5.tar.gz
-Source: 4.5.tar.gz
 # manpages from http://ftp.debian.org/debian/pool/main/s/squashfs-tools/squashfs-tools_4.2+20121212-1.debian.tar.xz
 # The man pages have been modified for 4.3 for Fedora.
 # Man pages still need a lot of changes for 4.5
@@ -13,7 +16,7 @@ Source1: mksquashfs.1
 Source2: unsquashfs.1
 
 BuildRequires: make
-BuildRequires:  gcc
+BuildRequires: gcc
 BuildRequires: zlib-devel
 BuildRequires: xz-devel
 BuildRequires: lzo-devel
@@ -26,7 +29,7 @@ Squashfs is a highly compressed read-only filesystem for Linux.  This package
 contains the utilities for manipulating squashfs filesystems.
 
 %prep
-%setup -n %{name}-4.5
+%forgesetup
 
 %build
 %set_build_flags
@@ -54,6 +57,9 @@ ln -s unsquashfs %{buildroot}%{_sbindir}/sqfscat
 %{_sbindir}/sqfscat
 
 %changelog
+* Mon Sep 13 2021 Bruno Wolff III <bruno@wolff.to> - 4.5-3.20210913gite048580
+- Fix bug 2003701 (additional write outside destination directory exploit)
+
 * Mon Jul 26 2021 Bruno Wolff III <bruno@wolff.to> - 4.5-2
 - Fix for sparse fragment bug 1985561
 
