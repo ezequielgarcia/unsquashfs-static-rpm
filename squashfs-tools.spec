@@ -2,12 +2,12 @@ Name: squashfs-tools
 Version: 4.5
 Summary: Utility for the creation of squashfs filesystems
 %global forgeurl https://github.com/plougher/%{name}
-%global date 20210913
-%global commit e0485802ec72996c20026da320650d8362f555bd
-%forgemeta -i
+%global date 20211227
+%global commit 5ae7238a0ae6fc420f55227d052ce9b1c66a9d0f
+%forgemeta -i -v
 URL:	 %{forgeurl}
 Source:  %{forgesource}
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPLv2+
 # manpages from http://ftp.debian.org/debian/pool/main/s/squashfs-tools/squashfs-tools_4.2+20121212-1.debian.tar.xz
 # The man pages have been modified for 4.3 for Fedora.
@@ -57,6 +57,9 @@ ln -s unsquashfs %{buildroot}%{_sbindir}/sqfscat
 %{_sbindir}/sqfscat
 
 %changelog
+* Mon Dec 27 2021 Bruno Wolff III <bruno@wolff.to> - 4.5-4.20211227git5ae7238
+- Get fixes for a few minor bugs
+
 * Mon Sep 13 2021 Bruno Wolff III <bruno@wolff.to> - 4.5-3.20210913gite048580
 - Fix bug 2003701 (additional write outside destination directory exploit)
 
