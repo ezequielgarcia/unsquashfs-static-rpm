@@ -2,9 +2,9 @@ Name: squashfs-tools
 Version: 4.5
 Summary: Utility for the creation of squashfs filesystems
 %global forgeurl https://github.com/plougher/%{name}
-%global date 20211227
-%global commit 5ae7238a0ae6fc420f55227d052ce9b1c66a9d0f
-%forgemeta -i -v
+%global date 20220128
+%global commit d5a583e4edce3df9f0c3bca84bff4f1d5ad3d09c
+%forgemeta
 URL:	 %{forgeurl}
 Source:  %{forgesource}
 Release: 5%{?dist}
@@ -12,6 +12,7 @@ License: GPLv2+
 # manpages from http://ftp.debian.org/debian/pool/main/s/squashfs-tools/squashfs-tools_4.2+20121212-1.debian.tar.xz
 # The man pages have been modified for 4.3 for Fedora.
 # Man pages still need a lot of changes for 4.5
+# Phillip is working on providing man pages very soon. Which will replace these.
 Source1: mksquashfs.1
 Source2: unsquashfs.1
 
@@ -57,6 +58,9 @@ ln -s unsquashfs %{buildroot}%{_sbindir}/sqfscat
 %{_sbindir}/sqfscat
 
 %changelog
+* Fri Jan 28 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-4.20220128gitd5a583e
+- Test a few changes before upstream tags a new point release
+
 * Sat Jan 22 2022 Fedora Release Engineering <releng@fedoraproject.org> - Packaging variables read or set by %forgemeta
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
 
