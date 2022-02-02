@@ -2,12 +2,12 @@ Name: squashfs-tools
 Version: 4.5
 Summary: Utility for the creation of squashfs filesystems
 %global forgeurl https://github.com/plougher/%{name}
-%global date 20220128
-%global commit d5a583e4edce3df9f0c3bca84bff4f1d5ad3d09c
-%forgemeta
+%global date 20220202
+%global commit 11c9591260599b7874841db6f69ae570708a4077
+%forgemeta -i -v
 URL:	 %{forgeurl}
 Source:  %{forgesource}
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: GPLv2+
 # manpages from http://ftp.debian.org/debian/pool/main/s/squashfs-tools/squashfs-tools_4.2+20121212-1.debian.tar.xz
 # The man pages have been modified for 4.3 for Fedora.
@@ -30,7 +30,7 @@ Squashfs is a highly compressed read-only filesystem for Linux.  This package
 contains the utilities for manipulating squashfs filesystems.
 
 %prep
-%forgesetup
+%forgesetup 
 
 %build
 %set_build_flags
@@ -58,7 +58,11 @@ ln -s unsquashfs %{buildroot}%{_sbindir}/sqfscat
 %{_sbindir}/sqfscat
 
 %changelog
-* Fri Jan 28 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-4.20220128gitd5a583e
+* Wed Feb 02 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-6.20220202git11c9591
+- Continue testing upstream pages
+- This includes help text changes
+
+* Fri Jan 28 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-5.20220128gitd5a583e
 - Test a few changes before upstream tags a new point release
 
 * Sat Jan 22 2022 Fedora Release Engineering <releng@fedoraproject.org> - Packaging variables read or set by %forgemeta
