@@ -2,18 +2,16 @@ Name: squashfs-tools
 Version: 4.5
 Summary: Utility for the creation of squashfs filesystems
 %global forgeurl https://github.com/plougher/%{name}
-%global date 20220202
-%global commit 11c9591260599b7874841db6f69ae570708a4077
-%forgemeta -i -v
+%global date 20220204
+%global commit 8a9d02e0027c69e6f47d8c2ed995d8c755c9581b
+%forgemeta
 URL:	 %{forgeurl}
 Source:  %{forgesource}
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: GPLv2+
 # manpages from http://ftp.debian.org/debian/pool/main/s/squashfs-tools/squashfs-tools_4.2+20121212-1.debian.tar.xz
-# The man pages have been modified for 4.3 for Fedora.
-# Man pages still need a lot of changes for 4.5
 # Phillip is working on providing man pages very soon. Which will replace these.
-Source1: mksquashfs.1
+# So far he has one for mksquashfs.
 Source2: unsquashfs.1
 
 BuildRequires: make
@@ -41,7 +39,7 @@ CFLAGS="%{optflags}" XZ_SUPPORT=1 LZO_SUPPORT=1 LZMA_XZ_SUPPORT=1 LZ4_SUPPORT=1 
 mkdir -p %{buildroot}%{_sbindir} %{buildroot}%{_mandir}/man1
 install -m 755 squashfs-tools/mksquashfs %{buildroot}%{_sbindir}/mksquashfs
 install -m 755 squashfs-tools/unsquashfs %{buildroot}%{_sbindir}/unsquashfs
-install -m 644 %{SOURCE1} %{buildroot}%{_mandir}/man1/mksquashfs.1
+install -m 644 manpages/mksquashfs.1 %{buildroot}%{_mandir}/man1/mksquashfs.1
 install -m 644 %{SOURCE2} %{buildroot}%{_mandir}/man1/unsquashfs.1
 ln -s mksquashfs %{buildroot}%{_sbindir}/sqfstar
 ln -s unsquashfs %{buildroot}%{_sbindir}/sqfscat
@@ -50,7 +48,8 @@ ln -s unsquashfs %{buildroot}%{_sbindir}/sqfscat
 %doc README ACKNOWLEDGEMENTS README-4.5 CHANGES COPYING USAGE
 
 %doc README
-%{_mandir}/man1/*
+%{_mandir}/man1/mksquashfs.1.gz
+%{_mandir}/man1/unsquashfs.1.gz
 
 %{_sbindir}/mksquashfs
 %{_sbindir}/unsquashfs
@@ -58,8 +57,12 @@ ln -s unsquashfs %{buildroot}%{_sbindir}/sqfscat
 %{_sbindir}/sqfscat
 
 %changelog
+* Fri Feb 04 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-7.20220204git8a9d02e
+- Continue testing upstream patches
+- A makefile for mksquashfs is now included
+
 * Wed Feb 02 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-6.20220202git11c9591
-- Continue testing upstream pages
+- Continue testing upstream patches
 - This includes help text changes
 
 * Fri Jan 28 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-5.20220128gitd5a583e
