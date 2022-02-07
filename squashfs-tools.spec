@@ -2,12 +2,12 @@ Name: squashfs-tools
 Version: 4.5
 Summary: Utility for the creation of squashfs filesystems
 %global forgeurl https://github.com/plougher/%{name}
-%global date 20220204
-%global commit 8a9d02e0027c69e6f47d8c2ed995d8c755c9581b
+%global date 20220207
+%global commit 7f9203e31bae003d12c0fc81a4b32097d17b5618
 %forgemeta
 URL:	 %{forgeurl}
 Source:  %{forgesource}
-Release: 7%{?dist}
+Release: 8%{?dist}
 License: GPLv2+
 # manpages from http://ftp.debian.org/debian/pool/main/s/squashfs-tools/squashfs-tools_4.2+20121212-1.debian.tar.xz
 # Phillip is working on providing man pages very soon. Which will replace these.
@@ -22,6 +22,7 @@ BuildRequires: lzo-devel
 BuildRequires: libattr-devel
 BuildRequires: lz4-devel
 BuildRequires: libzstd-devel
+BuildRequires: help2man
 
 %description
 Squashfs is a highly compressed read-only filesystem for Linux.  This package
@@ -36,13 +37,9 @@ pushd squashfs-tools
 CFLAGS="%{optflags}" XZ_SUPPORT=1 LZO_SUPPORT=1 LZMA_XZ_SUPPORT=1 LZ4_SUPPORT=1 ZSTD_SUPPORT=1 make %{?_smp_mflags}
 
 %install
-mkdir -p %{buildroot}%{_sbindir} %{buildroot}%{_mandir}/man1
-install -m 755 squashfs-tools/mksquashfs %{buildroot}%{_sbindir}/mksquashfs
-install -m 755 squashfs-tools/unsquashfs %{buildroot}%{_sbindir}/unsquashfs
-install -m 644 manpages/mksquashfs.1 %{buildroot}%{_mandir}/man1/mksquashfs.1
+pushd squashfs-tools
+make INSTALL_PREFIX=%{buildroot}/usr INSTALL_DIR=%{buildroot}%{_sbindir} INSTALL_MANPAGES_DIR=%{buildroot}%{_mandir}/man1 install
 install -m 644 %{SOURCE2} %{buildroot}%{_mandir}/man1/unsquashfs.1
-ln -s mksquashfs %{buildroot}%{_sbindir}/sqfstar
-ln -s unsquashfs %{buildroot}%{_sbindir}/sqfscat
 
 %files
 %doc README ACKNOWLEDGEMENTS README-4.5 CHANGES COPYING USAGE
@@ -57,6 +54,10 @@ ln -s unsquashfs %{buildroot}%{_sbindir}/sqfscat
 %{_sbindir}/sqfscat
 
 %changelog
+* Mon Feb 07 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-8.20220207git7f9203e
+- Continue testing upstream patches
+- Man pages are now built during the build process
+
 * Fri Feb 04 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-7.20220204git8a9d02e
 - Continue testing upstream patches
 - A makefile for mksquashfs is now included
