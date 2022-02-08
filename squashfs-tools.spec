@@ -3,11 +3,11 @@ Version: 4.5
 Summary: Utility for the creation of squashfs filesystems
 %global forgeurl https://github.com/plougher/%{name}
 %global date 20220207
-%global commit 7f9203e31bae003d12c0fc81a4b32097d17b5618
+%global commit bd186a77fe670d635e65b021b3d05fc6e67f8d07
 %forgemeta
 URL:	 %{forgeurl}
 Source:  %{forgesource}
-Release: 8%{?dist}
+Release: 9%{?dist}
 License: GPLv2+
 # manpages from http://ftp.debian.org/debian/pool/main/s/squashfs-tools/squashfs-tools_4.2+20121212-1.debian.tar.xz
 # Phillip is working on providing man pages very soon. Which will replace these.
@@ -54,6 +54,10 @@ install -m 644 %{SOURCE2} %{buildroot}%{_mandir}/man1/unsquashfs.1
 %{_sbindir}/sqfscat
 
 %changelog
+* Mon Feb 07 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-9.20220207gitbd186a7
+- Continue testing upstream patches
+- The deprecated lzma support options are improved in the man page
+
 * Mon Feb 07 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-8.20220207git7f9203e
 - Continue testing upstream patches
 - Man pages are now built during the build process
