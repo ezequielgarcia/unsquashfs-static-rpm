@@ -2,17 +2,13 @@ Name: squashfs-tools
 Version: 4.5
 Summary: Utility for the creation of squashfs filesystems
 %global forgeurl https://github.com/plougher/%{name}
-%global date 20220207
-%global commit bd186a77fe670d635e65b021b3d05fc6e67f8d07
+%global date 20220208
+%global commit 9e46a75985f0b236797976e387e8bce717e7a2d5
 %forgemeta
 URL:	 %{forgeurl}
 Source:  %{forgesource}
-Release: 9%{?dist}
+Release: 10%{?dist}
 License: GPLv2+
-# manpages from http://ftp.debian.org/debian/pool/main/s/squashfs-tools/squashfs-tools_4.2+20121212-1.debian.tar.xz
-# Phillip is working on providing man pages very soon. Which will replace these.
-# So far he has one for mksquashfs.
-Source2: unsquashfs.1
 
 BuildRequires: make
 BuildRequires: gcc
@@ -39,7 +35,6 @@ CFLAGS="%{optflags}" XZ_SUPPORT=1 LZO_SUPPORT=1 LZMA_XZ_SUPPORT=1 LZ4_SUPPORT=1 
 %install
 pushd squashfs-tools
 make INSTALL_PREFIX=%{buildroot}/usr INSTALL_DIR=%{buildroot}%{_sbindir} INSTALL_MANPAGES_DIR=%{buildroot}%{_mandir}/man1 install
-install -m 644 %{SOURCE2} %{buildroot}%{_mandir}/man1/unsquashfs.1
 
 %files
 %doc README ACKNOWLEDGEMENTS README-4.5 CHANGES COPYING USAGE
@@ -54,6 +49,10 @@ install -m 644 %{SOURCE2} %{buildroot}%{_mandir}/man1/unsquashfs.1
 %{_sbindir}/sqfscat
 
 %changelog
+* Tue Feb 08 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-10.20220207git9e46a75
+- Continue testing upstream patches prior to 4.5.1 release.
+- Upstream man page for unsquashfs replaces out of date one froom Debian.
+
 * Mon Feb 07 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-9.20220207gitbd186a7
 - Continue testing upstream patches
 - The deprecated lzma support options are improved in the man page
