@@ -2,12 +2,12 @@ Name: squashfs-tools
 Version: 4.5
 Summary: Utility for the creation of squashfs filesystems
 %global forgeurl https://github.com/plougher/%{name}
-%global date 20220208
-%global commit 9e46a75985f0b236797976e387e8bce717e7a2d5
+%global date 20220209
+%global commit 0425d3d2d87a7775864bc6d04a4c8c45b93fa9b2
 %forgemeta
 URL:	 %{forgeurl}
 Source:  %{forgesource}
-Release: 10%{?dist}
+Release: 11%{?dist}
 License: GPLv2+
 
 BuildRequires: make
@@ -42,6 +42,7 @@ make INSTALL_PREFIX=%{buildroot}/usr INSTALL_DIR=%{buildroot}%{_sbindir} INSTALL
 %doc README
 %{_mandir}/man1/mksquashfs.1.gz
 %{_mandir}/man1/unsquashfs.1.gz
+%{_mandir}/man1/sqfstar.1.gz
 
 %{_sbindir}/mksquashfs
 %{_sbindir}/unsquashfs
@@ -49,6 +50,10 @@ make INSTALL_PREFIX=%{buildroot}/usr INSTALL_DIR=%{buildroot}%{_sbindir} INSTALL
 %{_sbindir}/sqfscat
 
 %changelog
+* Tue Wed 09 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-11.20220207git0425d3d
+- Continue testing upstream patches prior to 4.5.1 release.
+- Add man page for sqfstar.
+
 * Tue Feb 08 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-10.20220207git9e46a75
 - Continue testing upstream patches prior to 4.5.1 release.
 - Upstream man page for unsquashfs replaces out of date one froom Debian.
