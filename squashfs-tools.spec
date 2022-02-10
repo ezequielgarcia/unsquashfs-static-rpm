@@ -3,11 +3,11 @@ Version: 4.5
 Summary: Utility for the creation of squashfs filesystems
 %global forgeurl https://github.com/plougher/%{name}
 %global date 20220210
-%global commit e7e96fe6ecd5c01aada20908188d9d0096ad0bd8
+%global commit a8f61e2a38992d4cd967303a61277123fcd66681
 %forgemeta
 URL:	 %{forgeurl}
 Source:  %{forgesource}
-Release: 12%{?dist}
+Release: 13%{?dist}
 License: GPLv2+
 
 BuildRequires: make
@@ -25,7 +25,7 @@ Squashfs is a highly compressed read-only filesystem for Linux.  This package
 contains the utilities for manipulating squashfs filesystems.
 
 %prep
-%forgesetup 
+%forgesetup
 
 %build
 %set_build_flags
@@ -51,6 +51,10 @@ make INSTALL_PREFIX=%{buildroot}/usr INSTALL_DIR=%{buildroot}%{_sbindir} INSTALL
 %{_sbindir}/sqfscat
 
 %changelog
+* Thu Feb 10 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-13.20220210gita8f61e2
+- Continue testing upstream patches prior to 4.5.1 release.
+- Some code cleanups for stuff noted by gcc.
+
 * Thu Feb 10 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-12.20220210gite7e96fe
 - Continue testing upstream patches prior to 4.5.1 release.
 - Add man page for sqfscat.
