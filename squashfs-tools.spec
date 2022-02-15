@@ -2,12 +2,12 @@ Name: squashfs-tools
 Version: 4.5
 Summary: Utility for the creation of squashfs filesystems
 %global forgeurl https://github.com/plougher/%{name}
-%global date 20220214
-%global commit de944c3e6fc8861d8a8844186983d1295415fdaf
+%global date 20220215
+%global commit f491ad858bcacf32dab2b37b3b0b325aa0ea6668
 %forgemeta
 URL:	 %{forgeurl}
 Source:  %{forgesource}
-Release: 14%{?dist}
+Release: 15%{?dist}
 License: GPLv2+
 
 BuildRequires: make
@@ -51,7 +51,11 @@ make INSTALL_PREFIX=%{buildroot}/usr INSTALL_DIR=%{buildroot}%{_sbindir} INSTALL
 %{_sbindir}/sqfscat
 
 %changelog
-* Thu Feb 10 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-14.20220214gitde944c3
+* Tue Feb 15 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-15.20220215gitf491ad8
+- Continue testing upstream patches prior to 4.5.1 release.
+- Some minor fixes.
+
+* Mon Feb 14 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-14.20220214gitde944c3
 - Continue testing upstream patches prior to 4.5.1 release.
 - Some minor fixes.
 
