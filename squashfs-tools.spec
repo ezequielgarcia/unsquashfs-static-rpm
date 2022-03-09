@@ -3,11 +3,11 @@ Version: 4.5
 Summary: Utility for the creation of squashfs filesystems
 %global forgeurl https://github.com/plougher/%{name}
 %global date 20220308
-%global commit 8b6ee895c763f0b8e2f394d83e93fc5a3e51942f
+%global commit 2ac40ca6d23cad73fb5b5da0c915382eaa31378d
 %forgemeta
 URL:	 %{forgeurl}
 Source:  %{forgesource}
-Release: 24%{?dist}
+Release: 25%{?dist}
 License: GPLv2+
 
 BuildRequires: make
@@ -30,7 +30,7 @@ contains the utilities for manipulating squashfs filesystems.
 %build
 %set_build_flags
 pushd squashfs-tools
-CFLAGS="%{optflags}" XZ_SUPPORT=1 LZO_SUPPORT=1 LZMA_XZ_SUPPORT=1 LZ4_SUPPORT=1 ZSTD_SUPPORT=1 make %{?_smp_mflags}
+CFLAGS="%optflags" XZ_SUPPORT=1 LZO_SUPPORT=1 LZMA_XZ_SUPPORT=1 LZ4_SUPPORT=1 ZSTD_SUPPORT=1 make %{?_smp_mflags}
 
 %install
 pushd squashfs-tools
@@ -51,7 +51,10 @@ make INSTALL_PREFIX=%{buildroot}/usr INSTALL_DIR=%{buildroot}%{_sbindir} INSTALL
 %{_sbindir}/sqfscat
 
 %changelog
-* Tue Mar 08 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-24.20220307git8b6ee89
+* Tue Mar 08 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-25.20220308git2ac40ca
+- Upstream fix for unsquashfs breakage from recent commit
+
+* Tue Mar 08 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-24.20220308git8b6ee89
 - Continue testing upstream patches prior to 4.5.1 release.
 - Minor fixes
 - Man page tweaks
