@@ -3,11 +3,11 @@ Version: 4.5
 Summary: Utility for the creation of squashfs filesystems
 %global forgeurl https://github.com/plougher/%{name}
 %global date 20220308
-%global commit 2ac40ca6d23cad73fb5b5da0c915382eaa31378d
+%global commit de61d00ffd2689d122696d4fc39f584c72fb24cf
 %forgemeta
 URL:	 %{forgeurl}
 Source:  %{forgesource}
-Release: 25%{?dist}
+Release: 26%{?dist}
 License: GPLv2+
 
 BuildRequires: make
@@ -51,6 +51,11 @@ make INSTALL_PREFIX=%{buildroot}/usr INSTALL_DIR=%{buildroot}%{_sbindir} INSTALL
 %{_sbindir}/sqfscat
 
 %changelog
+* Thu Mar 10 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-26.20220310gitde61d0a
+- Continue testing upstream patches prior to 4.5.1 release.
+- Minor fixes
+- Doc updates
+
 * Tue Mar 08 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-25.20220308git2ac40ca
 - Upstream fix for unsquashfs breakage from recent commit
 
