@@ -37,7 +37,7 @@ mkdir -p %{buildroot}%{_sbindir} && cp -v unsquashfs %{buildroot}%{_sbindir}/uns
 %{_sbindir}/unsquashfs
 
 %changelog
-* Apr 26 2022 Ezequiel Garcia <ezequiel@vanguardiasur.com.ar> - 4.5.1-2
+* Tue Apr 26 2022 Ezequiel Garcia <ezequiel@vanguardiasur.com.ar> - 4.5.1-2
 - Re-packaging for unsquashfs-static package.
 - Add -t[est] mode to verify squashfs images.
 - Make decompression errors fatal.
