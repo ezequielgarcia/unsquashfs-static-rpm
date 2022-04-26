@@ -1,55 +1,47 @@
-Name: squashfs-tools
+Name: unsquashfs-static
 Version: 4.5.1
-Summary: Utility for the creation of squashfs filesystems
-%global forgeurl https://github.com/plougher/%{name}
-%global date 20220318
-%global tag 4.5.1
-%forgemeta -i -v
-URL:	 %{forgeurl}
-Source:  %{forgesource}
-Release: 1%{?dist}
+Summary: Static build for unsquashfs
+Release: 2%{?dist}
+Source0: https://github.com/ezequielgarcia/squashfs-tools/archive/%{version}-2/%{name}-%{version}.tar.gz
 License: GPLv2+
 
 BuildRequires: make
 BuildRequires: gcc
+BuildRequires: glibc-static
 BuildRequires: zlib-devel
+BuildRequires: zlib-static
 BuildRequires: xz-devel
-BuildRequires: lzo-devel
-BuildRequires: libattr-devel
+BuildRequires: xz-static
 BuildRequires: lz4-devel
+BuildRequires: lz4-static
 BuildRequires: libzstd-devel
-BuildRequires: help2man
+BuildRequires: libzstd-static
 
 %description
 Squashfs is a highly compressed read-only filesystem for Linux.  This package
 contains the utilities for manipulating squashfs filesystems.
 
 %prep
-%forgesetup
+%autosetup -p1 -n squashfs-tools-%{version}-2
 
 %build
 %set_build_flags
 pushd squashfs-tools
-CFLAGS="%optflags" XZ_SUPPORT=1 LZO_SUPPORT=1 LZMA_XZ_SUPPORT=1 LZ4_SUPPORT=1 ZSTD_SUPPORT=1 make %{?_smp_mflags}
+CFLAGS="%optflags" XZ_SUPPORT=1 LZMA_XZ_SUPPORT=1 LZ4_SUPPORT=1 ZSTD_SUPPORT=1 STATIC=1 make %{?_smp_mflags} unsquashfs
 
 %install
 pushd squashfs-tools
-make INSTALL_PREFIX=%{buildroot}/usr INSTALL_DIR=%{buildroot}%{_sbindir} INSTALL_MANPAGES_DIR=%{buildroot}%{_mandir}/man1 install
+mkdir -p %{buildroot}%{_sbindir} && cp -v unsquashfs %{buildroot}%{_sbindir}/unsquashfs
 
 %files
-%doc ACKNOWLEDGEMENTS README-4.5.1 CHANGES COPYING USAGE ACTIONS-README
-
-%{_mandir}/man1/mksquashfs.1.gz
-%{_mandir}/man1/unsquashfs.1.gz
-%{_mandir}/man1/sqfstar.1.gz
-%{_mandir}/man1/sqfscat.1.gz
-
-%{_sbindir}/mksquashfs
 %{_sbindir}/unsquashfs
-%{_sbindir}/sqfstar
-%{_sbindir}/sqfscat
 
 %changelog
+* Apr 26 2022 Ezequiel Garcia <ezequiel@vanguardiasur.com.ar> - 4.5.1-2
+- Re-packaging for unsquashfs-static package.
+- Add -t[est] mode to verify squashfs images.
+- Make decompression errors fatal.
+
 * Sat Mar 18 2022 Bruno Wolff III <bruno@wolff.to> - 4.5-1
 - 4.5.1 release
 - Up to date man pages
